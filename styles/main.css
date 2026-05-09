@@ -1,0 +1,138 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap');
+
+html { 
+    scroll-behavior: smooth; 
+}
+
+body { 
+    font-family: 'Montserrat', sans-serif; 
+}
+
+h1, h2, h3, h4, .font-serif { 
+    font-family: 'Playfair Display', serif; 
+}
+
+.hero-bg {
+    background-image: linear-gradient(rgba(52, 55, 35, 0.4), rgba(52, 55, 35, 0.6)), url('../images/hero-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.floral-border {
+    background-image: url('https://image.qwenlm.ai/public_source/d7120f60-b97d-4f96-8f1a-a82205d72398/10d17243f-f533-43ff-bcdf-86a47dcf1bfe.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Additional Animations */
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+@keyframes slideInFromLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInFromRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.animate-float {
+    animation: float 3s ease-in-out infinite;
+}
+
+.animate-pulse-slow {
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.slide-in-left {
+    animation: slideInFromLeft 0.8s ease-out;
+}
+
+.slide-in-right {
+    animation: slideInFromRight 0.8s ease-out;
+}
+
+/* Smooth transitions for all interactive elements */
+a, button, input, select, textarea {
+    transition: all 0.3s ease;
+}
+
+/* Focus styles for accessibility */
+button:focus,
+input:focus,
+select:focus,
+textarea:focus,
+a:focus {
+    outline: 2px solid #D4AF37;
+    outline-offset: 2px;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #EFE9D7;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #898861;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #7D2826;
+}
+
+/* Loading state */
+.loading {
+    pointer-events: none;
+    opacity: 0.6;
+}
+
+/* Print styles */
+@media print {
+    nav, button, .no-print {
+        display: none !important;
+    }
+    
+    body {
+        background: white;
+        color: black;
+    }
+}

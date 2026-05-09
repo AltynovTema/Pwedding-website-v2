@@ -1,0 +1,94 @@
+{
+  "couple": {
+    "groom": "Артём",
+    "bride": "Алёна",
+    "initials": "А & А",
+    "hashtag": "#ArtemAlyona2026"
+  },
+  "wedding": {
+    "date": "2026-08-09",
+    "displayDate": "09 Августа 2026",
+    "time": "15:00",
+    "dayOfWeek": "воскресенье",
+    "fullDateTime": "August 9, 2026 15:00:00"
+  },
+  "venue": {
+    "name": "Усадьба \"Серебряный Век\"",
+    "address": "Московская область, д. Жуковка, Рублёвское шоссе",
+    "coordinates": {
+      "lat": 55.7558,
+      "lng": 37.6173
+    }
+  },
+  "schedule": [
+    {
+      "time": "15:00",
+      "title": "Сбор гостей",
+      "description": "Welcome-фуршет и лёгкие закуски"
+    },
+    {
+      "time": "16:00",
+      "title": "Церемония",
+      "description": "Выездная регистрация брака"
+    },
+    {
+      "time": "18:00",
+      "title": "Праздничный ужин",
+      "description": "Гастрономическое путешествие"
+    },
+    {
+      "time": "21:00",
+      "title": "Танцы",
+      "description": "Первый танец и вечеринка до упаду"
+    }
+  ],
+  "dressCode": {
+    "style": "Elegant Garden Attire",
+    "description": "Элегантный садовый стиль. Палитра: пастельные тона, избегайте белого и чёрного."
+  },
+  "rsvp": {
+    "deadline": "2026-07-01",
+    "deadlineDisplay": "1 июля 2026",
+    "foodOptions": [
+      { "value": "meat", "label": "Мясо" },
+      { "value": "fish", "label": "Рыба" },
+      { "value": "veg", "label": "Вегетарианское" }
+    ]
+  },
+  "contacts": {
+    "groom": {
+      "name": "Артём",
+      "phone": "+7 (900) 123-45-67",
+      "phoneLink": "tel:+79001234567"
+    },
+    "bride": {
+      "name": "Алёна",
+      "phone": "+7 (900) 123-45-68",
+      "phoneLink": "tel:+79001234568"
+    }
+  },
+  "story": [
+    {
+      "title": "Первая Встреча",
+      "description": "Всё началось с случайной встречи за чашкой кофе...",
+      "image": "https://image.qwenlm.ai/public_source/d7120f60-b97d-4f96-8f1a-a82205d72398/1b22463f6-c13a-426c-bb36-71c10b0e2b9d.png"
+    },
+    {
+      "title": "Предложение",
+      "description": "Он встал на колено в саду, полном роз...",
+      "image": "https://image.qwenlm.ai/public_source/d7120f60-b97d-4f96-8f1a-a82205d72398/151f7383f-f136-4b97-bc04-cb51518f8646.png"
+    },
+    {
+      "title": "Наше Путешествие",
+      "description": "Вместе мы покорили Европу и строим будущее...",
+      "image": "https://image.qwenlm.ai/public_source/d7120f60-b97d-4f96-8f1a-a82205d72398/1df46492e-017e-4376-8085-bf8b5a521e10.png"
+    }
+  ],
+  "colors": {
+    "coral": "#7D2826",
+    "candle": "#EFE9D7",
+    "leaf": "#898861",
+    "juniper": "#343723",
+    "gold": "#D4AF37"
+  }
+}

@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Свадебное приглашение Артёма и Алёны - 9 августа 2026 года">
+    <meta name="keywords" content="свадьба, приглашение, Артём, Алёна, 2026">
+    <meta property="og:title" content="Свадьба Артёма и Алёны | 09.08.2026">
+    <meta property="og:description" content="Приглашаем вас разделить с нами наш особенный день">
+    <meta property="og:type" content="website">
+    <title>Свадьба Артёма и Алёны | 09.08.2026</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💕</text></svg>">
+    <link rel="stylesheet" href="./styles/main.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&f[]=clash-display@400,500,600,700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        coral: '#7D2826',
+                        candle: '#EFE9D7',
+                        leaf: '#898861',
+                        juniper: '#343723',
+                        gold: '#D4AF37',
+                    },
+                    fontFamily: {
+                        serif: ['Playfair Display', 'serif'],
+                        sans: ['Montserrat', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-candle text-juniper antialiased">
+
+    <!-- Loading Screen -->
+    <div id="loadingScreen" class="fixed inset-0 z-[100] bg-juniper flex items-center justify-center transition-opacity duration-500">
+        <div class="text-center text-candle">
+            <div class="text-6xl mb-4 animate-pulse">💕</div>
+            <p class="font-serif text-2xl">А & А</p>
+            <p class="text-sm mt-2 opacity-70">Загрузка...</p>
+        </div>
+    </div>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="fixed bottom-8 right-8 bg-coral text-candle w-12 h-12 rounded-full shadow-lg hover:bg-coral/80 transition-all transform hover:scale-110 opacity-0 pointer-events-none z-40 flex items-center justify-center" aria-label="Наверх">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
+        </svg>
+    </button>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-juniper/90 backdrop-blur-sm text-candle transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex-shrink-0 font-serif text-xl font-bold">А & А</div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="#home" class="hover:text-gold px-3 py-2 rounded-md text-sm font-medium transition-colors">Главная</a>
+                        <a href="#story" class="hover:text-gold px-3 py-2 rounded-md text-sm font-medium transition-colors">История</a>
+                        <a href="#details" class="hover:text-gold px-3 py-2 rounded-md text-sm font-medium transition-colors">Детали</a>
+                        <a href="#program" class="hover:text-gold px-3 py-2 rounded-md text-sm font-medium transition-colors">Программа</a>
+                        <a href="#gallery" class="hover:text-gold px-3 py-2 rounded-md text-sm font-medium transition-colors">Галерея</a>
+                        <a href="#transportation" class="hover:text-gold px-3 py-2 rounded-md text-sm font-medium transition-colors">Транспорт</a>
+                        <a href="#faq" class="hover:text-gold px-3 py-2 rounded-md text-sm font-medium transition-colors">FAQ</a>
+                        <a href="#rsvp" class="bg-coral text-candle hover:bg-coral/80 px-4 py-2 rounded-full text-sm font-medium transition-colors">RSVP</a>
+                    </div>
+                </div>
+                <div class="-mr-2 flex md:hidden">
+                    <button type="button" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="inline-flex items-center justify-center p-2 rounded-md text-candle hover:text-white focus:outline-none">
+                        <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div class="hidden md:hidden bg-juniper" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#home" class="text-candle hover:text-gold block px-3 py-2 rounded-md text-base font-medium">Главная</a>
+                <a href="#story" class="text-candle hover:text-gold block px-3 py-2 rounded-md text-base font-medium">История</a>
+                <a href="#details" class="text-candle hover:text-gold block px-3 py-2 rounded-md text-base font-medium">Детали</a>
+                <a href="#program" class="text-candle hover:text-gold block px-3 py-2 rounded-md text-base font-medium">Программа</a>
+                <a href="#gallery" class="text-candle hover:text-gold block px-3 py-2 rounded-md text-base font-medium">Галерея</a>
+                <a href="#transportation" class="text-candle hover:text-gold block px-3 py-2 rounded-md text-base font-medium">Транспорт</a>
+                <a href="#faq" class="text-candle hover:text-gold block px-3 py-2 rounded-md text-base font-medium">FAQ</a>
+                <a href="#rsvp" class="text-candle hover:text-gold block px-3 py-2 rounded-md text-base font-medium">RSVP</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-bg h-screen flex items-center justify-center relative">
+        <div class="text-center text-candle px-4 fade-in">
+            <p class="text-lg md:text-xl mb-4 tracking-widest uppercase font-light">Приглашение на свадьбу</p>
+            <h1 class="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 leading-tight">Артём & Алёна</h1>
+            <div class="w-24 h-1 bg-gold mx-auto mb-6"></div>
+            <p class="text-2xl md:text-3xl font-serif italic mb-8">09 Августа 2026</p>
+            <a href="#rsvp" class="inline-block bg-coral text-candle px-8 py-3 rounded-full text-lg font-medium hover:bg-coral/90 transition-transform transform hover:scale-105 shadow-lg">
+                Подтвердить участие
+            </a>
+        </div>
+        <div class="absolute bottom-8 animate-bounce text-candle">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+        </div>
+    </section>
+
+    <!-- Countdown Section -->
+    <section class="py-16 bg-juniper text-candle">
+        <div class="max-w-4xl mx-auto text-center px-4">
+            <h2 class="text-3xl md:text-4xl font-serif mb-8 fade-in">До нашего особенного дня</h2>
+            <div id="countdown" class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 fade-in">
+                <div class="bg-coral/20 rounded-lg p-4 md:p-6 border border-coral/30">
+                    <span id="days" class="block text-4xl md:text-6xl font-bold font-serif">00</span>
+                    <span class="text-sm uppercase tracking-wider">Дней</span>
+                </div>
+                <div class="bg-coral/20 rounded-lg p-4 md:p-6 border border-coral/30">
+                    <span id="hours" class="block text-4xl md:text-6xl font-bold font-serif">00</span>
+                    <span class="text-sm uppercase tracking-wider">Часов</span>
+                </div>
+                <div class="bg-coral/20 rounded-lg p-4 md:p-6 border border-coral/30">
+                    <span id="minutes" class="block text-4xl md:text-6xl font-bold font-serif">00</span>
+                    <span class="text-sm uppercase tracking-wider">Минут</span>
+                </div>
+                <div class="bg-coral/20 rounded-lg p-4 md:p-6 border border-coral/30">
+                    <span id="seconds" class="block text-4xl md:text-6xl font-bold font-serif">00</span>
+                    <span class="text-sm uppercase tracking-wider">Секунд</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Story Section -->
+    <section id="story" class="py-20 bg-candle">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-4xl md:text-5xl font-serif text-juniper mb-4">Наша История</h2>
+                <p class="text-leaf italic text-lg">Любовь — это когда счастье другого важнее твоего собственного</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Story Item 1 -->
+                <div class="group relative overflow-hidden rounded-lg shadow-xl fade-in">
+                    <img src="./images/story-1.jpg" alt="Первая встреча" loading="lazy" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-juniper/60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <div class="text-center text-candle p-4">
+                            <h3 class="text-2xl font-serif mb-2">Первая Встреча</h3>
+                            <p>Всё началось с случайной встречи за чашкой кофе...</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Story Item 2 -->
+                <div class="group relative overflow-hidden rounded-lg shadow-xl fade-in">
+                    <img src="./images/story-2.jpg" alt="Предложение" loading="lazy" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-juniper/60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <div class="text-center text-candle p-4">
+                            <h3 class="text-2xl font-serif mb-2">Предложение</h3>
+                            <p>Он встал на колено в саду, полном роз...</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Story Item 3 -->
+                <div class="group relative overflow-hidden rounded-lg shadow-xl fade-in">
+                    <img src="./images/story-3.jpg" alt="Путешествия" loading="lazy" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-juniper/60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <div class="text-center text-candle p-4">
+                            <h3 class="text-2xl font-serif mb-2">Наше Путешествие</h3>
+                            <p>Вместе мы покорили Европу и строим будущее...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Event Details Section -->
+    <section id="details" class="py-20 bg-leaf/20 relative">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-4xl md:text-5xl font-serif text-juniper mb-4">Детали Мероприятия</h2>
+                <div class="w-24 h-1 bg-leaf mx-auto"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <!-- Info -->
+                <div class="space-y-8 fade-in">
+                    <div class="bg-candle p-8 rounded-lg shadow-lg border-l-4 border-leaf">
+                        <h3 class="text-2xl font-serif text-juniper mb-4 flex items-center">
+                            <span class="text-coral mr-3">📅</span> Когда
+                        </h3>
+                        <p class="text-lg">9 августа 2026 года, воскресенье</p>
+                        <p class="text-leaf mt-2">Сбор гостей: 15:00</p>
+                    </div>
+                    
+                    <div class="bg-candle p-8 rounded-lg shadow-lg border-l-4 border-coral">
+                        <h3 class="text-2xl font-serif text-juniper mb-4 flex items-center">
+                            <span class="text-coral mr-3">🏰</span> Где
+                        </h3>
+                        <p class="text-lg font-bold">Усадьба "Серебряный Век"</p>
+                        <p class="text-leaf mt-1">Московская область, д. Жуковка, Рублёвское шоссе</p>
+                        <a href="https://yandex.ru/maps/?text=Усадьба+Серебряный+Век+Жуковка" target="_blank" rel="noopener noreferrer" class="inline-block mt-4 text-coral hover:text-coral/80 font-medium transition-colors">
+                            📍 Открыть карту →
+                        </a>
+                    </div>
+
+                    <div class="bg-candle p-8 rounded-lg shadow-lg border-l-4 border-gold">
+                        <h3 class="text-2xl font-serif text-juniper mb-4 flex items-center">
+                            <span class="text-coral mr-3">👗</span> Дресс-код
+                        </h3>
+                        <p class="text-lg">Elegant Garden Attire</p>
+                        <p class="text-leaf mt-1 text-sm">Элегантный садовый стиль. Палитра: пастельные тона, избегайте белого и чёрного.</p>
+                    </div>
+                </div>
+
+                <!-- Image/Map Placeholder -->
+                <div class="fade-in">
+                    <div class="relative rounded-2xl overflow-hidden shadow-2xl group">
+                        <img src="./images/venue.jpg" alt="Venue" loading="lazy" class="w-full h-full object-cover min-h-[400px]">
+                        <div class="absolute inset-0 bg-gradient-to-t from-juniper/80 to-transparent flex items-end p-8">
+                            <div class="text-candle">
+                                <p class="font-serif text-2xl">Место проведения</p>
+                                <p class="text-sm opacity-80">Нажмите для просмотра карты</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Program Section -->
+    <section id="program" class="py-20 bg-coral text-candle">
+        <div class="max-w-4xl mx-auto px-4">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-4xl md:text-5xl font-serif mb-4">Программа Дня</h2>
+                <p class="opacity-80">Как пройдёт наш праздник</p>
+            </div>
+
+            <div class="relative border-l-2 border-candle/30 ml-4 md:ml-0 md:pl-0 space-y-12">
+                <!-- Timeline Item -->
+                <div class="relative pl-8 md:pl-0 fade-in">
+                    <div class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-gold border-4 border-coral"></div>
+                    <div class="md:flex md:justify-between md:items-center group">
+                        <div class="md:w-5/12 md:text-right md:pr-8 mb-2 md:mb-0">
+                            <span class="text-3xl font-bold font-serif text-gold">15:00</span>
+                        </div>
+                        <div class="md:w-5/12 md:pl-8">
+                            <h3 class="text-xl font-serif mb-1">Сбор гостей</h3>
+                            <p class="text-sm opacity-80">Welcome-фуршет и лёгкие закуски</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Timeline Item -->
+                <div class="relative pl-8 md:pl-0 fade-in">
+                    <div class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-gold border-4 border-coral"></div>
+                    <div class="md:flex md:justify-between md:items-center group">
+                        <div class="md:w-5/12 md:text-right md:pr-8 mb-2 md:mb-0">
+                            <span class="text-3xl font-bold font-serif text-gold">16:00</span>
+                        </div>
+                        <div class="md:w-5/12 md:pl-8">
+                            <h3 class="text-xl font-serif mb-1">Церемония</h3>
+                            <p class="text-sm opacity-80">Выездная регистрация брака</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Timeline Item -->
+                <div class="relative pl-8 md:pl-0 fade-in">
+                    <div class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-gold border-4 border-coral"></div>
+                    <div class="md:flex md:justify-between md:items-center group">
+                        <div class="md:w-5/12 md:text-right md:pr-8 mb-2 md:mb-0">
+                            <span class="text-3xl font-bold font-serif text-gold">18:00</span>
+                        </div>
+                        <div class="md:w-5/12 md:pl-8">
+                            <h3 class="text-xl font-serif mb-1">Праздничный ужин</h3>
+                            <p class="text-sm opacity-80">Гастрономическое путешествие</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Timeline Item -->
+                <div class="relative pl-8 md:pl-0 fade-in">
+                    <div class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-gold border-4 border-coral"></div>
+                    <div class="md:flex md:justify-between md:items-center group">
+                        <div class="md:w-5/12 md:text-right md:pr-8 mb-2 md:mb-0">
+                            <span class="text-3xl font-bold font-serif text-gold">21:00</span>
+                        </div>
+                        <div class="md:w-5/12 md:pl-8">
+                            <h3 class="text-xl font-serif mb-1">Танцы</h3>
+                            <p class="text-sm opacity-80">Первый танец и вечеринка до упаду</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gift Preferences Section -->
+    <section class="py-20 bg-candle">
+        <div class="max-w-3xl mx-auto px-4 text-center fade-in">
+            <div class="inline-block p-4 border-2 border-leaf rounded-full mb-6">
+                <svg class="w-10 h-10 text-leaf" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"></path></svg>
+            </div>
+            <h2 class="text-3xl md:text-4xl font-serif text-juniper mb-6">Пожелания по подаркам</h2>
+            <p class="text-lg text-leaf leading-relaxed mb-6">
+                Ваше присутствие — самый главный подарок для нас! <br>
+                Если вы хотите сделать сюрприз, мы будем благодарны за вклад в наше свадебное путешествие или уют нашего нового дома.
+            </p>
+            <p class="font-medium text-coral">Главное — ваше внимание и хорошее настроение!</p>
+        </div>
+    </section>
+
+    <!-- Photo Gallery Section -->
+    <section id="gallery" class="py-20 bg-leaf/10">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-4xl md:text-5xl font-serif text-juniper mb-4">Наша Галерея</h2>
+                <p class="text-leaf italic text-lg">Моменты нашей любви</p>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                <div class="aspect-square overflow-hidden rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300 fade-in">
+                    <img src="./images/gallery-1.jpg" alt="Фото 1" loading="lazy" class="w-full h-full object-cover hover:scale-110 transition-transform duration-500">
+                </div>
+                <div class="aspect-square overflow-hidden rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300 fade-in">
+                    <img src="./images/gallery-2.jpg" alt="Фото 2" loading="lazy" class="w-full h-full object-cover hover:scale-110 transition-transform duration-500">
+                </div>
+                <div class="aspect-square overflow-hidden rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300 fade-in">
+                    <img src="./images/gallery-3.jpg" alt="Фото 3" loading="lazy" class="w-full h-full object-cover hover:scale-110 transition-transform duration-500">
+                </div>
+                <div class="aspect-square overflow-hidden rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300 fade-in">
+                    <img src="./images/gallery-4.jpg" alt="Фото 4" loading="lazy" class="w-full h-full object-cover hover:scale-110 transition-transform duration-500">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Transportation Section -->
+    <section id="transportation" class="py-20 bg-candle">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-4xl md:text-5xl font-serif text-juniper mb-4">Как Добраться</h2>
+                <p class="text-leaf italic">Информация о транспорте и парковке</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- By Car -->
+                <div class="bg-white p-8 rounded-lg shadow-lg text-center fade-in">
+                    <div class="w-16 h-16 bg-coral/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-coral" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-serif text-juniper mb-3">На Машине</h3>
+                    <p class="text-leaf text-sm mb-4">По Рублёвскому шоссе до деревни Жуковка. Бесплатная парковка на территории.</p>
+                    <a href="https://yandex.ru/maps/?text=Усадьба+Серебряный+Век+Жуковка" target="_blank" rel="noopener noreferrer" class="text-coral hover:text-coral/80 text-sm font-medium">
+                        Построить маршрут →
+                    </a>
+                </div>
+
+                <!-- By Taxi -->
+                <div class="bg-white p-8 rounded-lg shadow-lg text-center fade-in">
+                    <div class="w-16 h-16 bg-coral/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-coral" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-serif text-juniper mb-3">На Такси</h3>
+                    <p class="text-leaf text-sm mb-4">Яндекс.Такси или Uber. Время в пути от МКАД ~20 минут.</p>
+                    <p class="text-coral text-sm font-medium">~500-700₽</p>
+                </div>
+
+                <!-- Organized Transfer -->
+                <div class="bg-white p-8 rounded-lg shadow-lg text-center fade-in">
+                    <div class="w-16 h-16 bg-coral/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-coral" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-serif text-juniper mb-3">Организованный Трансфер</h3>
+                    <p class="text-leaf text-sm mb-4">Для гостей будет организован трансфер от м. Молодёжная. Подробности уточните у нас.</p>
+                    <p class="text-coral text-sm font-medium">Бесплатно</p>
+                </div>
+            </div>
+
+            <div class="mt-12 bg-juniper/5 p-6 rounded-lg fade-in">
+                <div class="flex items-start">
+                    <svg class="w-6 h-6 text-coral mr-3 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                    <div>
+                        <h4 class="font-medium text-juniper mb-2">Важная Информация</h4>
+                        <ul class="text-leaf text-sm space-y-1">
+                            <li>• Парковка охраняемая и бесплатная для всех гостей</li>
+                            <li>• Если планируете употреблять алкоголь, воспользуйтесь трансфером или такси</li>
+                            <li>• Для заказа трансфера сообщите нам заранее</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="py-20 bg-leaf/10">
+        <div class="max-w-4xl mx-auto px-4">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-4xl md:text-5xl font-serif text-juniper mb-4">Частые Вопросы</h2>
+                <p class="text-leaf italic">Всё, что нужно знать</p>
+            </div>
+
+            <div class="space-y-4">
+                <div class="bg-candle rounded-lg shadow-md overflow-hidden fade-in">
+                    <button class="w-full px-6 py-4 text-left flex justify-between items-center focus:outline-none" onclick="toggleFaq(this)">
+                        <span class="font-medium text-juniper text-lg">Можно ли прийти с детьми?</span>
+                        <svg class="w-6 h-6 text-coral transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div class="hidden px-6 pb-4 text-leaf">
+                        <p>Мы будем рады видеть ваших детей! Для них будет организована детская зона с аниматором.</p>
+                    </div>
+                </div>
+
+                <div class="bg-candle rounded-lg shadow-md overflow-hidden fade-in">
+                    <button class="w-full px-6 py-4 text-left flex justify-between items-center focus:outline-none" onclick="toggleFaq(this)">
+                        <span class="font-medium text-juniper text-lg">Есть ли парковка?</span>
+                        <svg class="w-6 h-6 text-coral transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div class="hidden px-6 pb-4 text-leaf">
+                        <p>Да, на территории усадьбы есть бесплатная охраняемая парковка для гостей.</p>
+                    </div>
+                </div>
+
+                <div class="bg-candle rounded-lg shadow-md overflow-hidden fade-in">
+                    <button class="w-full px-6 py-4 text-left flex justify-between items-center focus:outline-none" onclick="toggleFaq(this)">
+                        <span class="font-medium text-juniper text-lg">Что если у меня аллергия на определенные продукты?</span>
+                        <svg class="w-6 h-6 text-coral transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div class="hidden px-6 pb-4 text-leaf">
+                        <p>Пожалуйста, укажите ваши пищевые ограничения в форме RSVP. Мы позаботимся о специальном меню.</p>
+                    </div>
+                </div>
+
+                <div class="bg-candle rounded-lg shadow-md overflow-hidden fade-in">
+                    <button class="w-full px-6 py-4 text-left flex justify-between items-center focus:outline-none" onclick="toggleFaq(this)">
+                        <span class="font-medium text-juniper text-lg">Во сколько заканчивается мероприятие?</span>
+                        <svg class="w-6 h-6 text-coral transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div class="hidden px-6 pb-4 text-leaf">
+                        <p>Празднование продлится до 23:00. Для желающих продолжить вечеринку будет организован трансфер.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- RSVP Section -->
+    <section id="rsvp" class="py-20 bg-juniper text-candle relative overflow-hidden">
+        <!-- Decorative Background -->
+        <div class="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none" style="background-image: url('https://image.qwenlm.ai/public_source/d7120f60-b97d-4f96-8f1a-a82205d72398/199c29479-dc7d-43dd-94f3-419b04129bc4.png'); background-size: 300px;"></div>
+        
+        <div class="max-w-2xl mx-auto px-4 relative z-10">
+            <div class="text-center mb-10 fade-in">
+                <h2 class="text-4xl md:text-5xl font-serif mb-4">Подтвердите участие</h2>
+                <p class="text-candle/70">Пожалуйста, заполните форму до 1 июля 2026</p>
+            </div>
+
+            <form id="rsvpForm" class="bg-white/10 backdrop-blur-md p-8 rounded-xl shadow-2xl border border-white/20 fade-in">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <label class="block text-sm font-medium mb-2 text-candle/80">Имя и Фамилия *</label>
+                        <input type="text" name="name" required class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-candle placeholder-candle/30 focus:outline-none focus:border-gold transition-colors" placeholder="Иван Иванов">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium mb-2 text-candle/80">Email *</label>
+                        <input type="email" name="email" required class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-candle placeholder-candle/30 focus:outline-none focus:border-gold transition-colors" placeholder="email@example.com">
+                    </div>
+                </div>
+
+                <div class="mb-6">
+                    <label class="block text-sm font-medium mb-2 text-candle/80">Сможете ли вы присутствовать? *</label>
+                    <select name="attendance" required class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-candle focus:outline-none focus:border-gold transition-colors appearance-none">
+                        <option value="" class="bg-juniper">Выберите ответ</option>
+                        <option value="yes" class="bg-juniper">С удовольствием приду</option>
+                        <option value="no" class="bg-juniper">К сожалению, не смогу</option>
+                    </select>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <label class="block text-sm font-medium mb-2 text-candle/80">Количество гостей</label>
+                        <input type="number" name="guests" min="1" max="5" value="1" class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-candle focus:outline-none focus:border-gold transition-colors">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium mb-2 text-candle/80">Предпочтения в еде</label>
+                        <select name="food" class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-candle focus:outline-none focus:border-gold transition-colors appearance-none">
+                            <option value="meat" class="bg-juniper">Мясо</option>
+                            <option value="fish" class="bg-juniper">Рыба</option>
+                            <option value="veg" class="bg-juniper">Вегетарианское</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="mb-8">
+                    <label class="block text-sm font-medium mb-2 text-candle/80">Пожелания / Аллергии</label>
+                    <textarea name="message" rows="3" class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-candle placeholder-candle/30 focus:outline-none focus:border-gold transition-colors" placeholder="Расскажите нам..."></textarea>
+                </div>
+
+                <button type="submit" class="w-full bg-coral hover:bg-coral/80 text-candle font-bold py-4 rounded-lg transition-all transform hover:scale-[1.02] shadow-lg">
+                    Отправить
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Contacts & Footer -->
+    <footer class="bg-leaf text-candle py-12">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            <div class="mb-8 fade-in">
+                <h3 class="text-2xl font-serif mb-4">Контакты</h3>
+                <p class="mb-2">По всем вопросам обращайтесь:</p>
+                <div class="flex flex-col md:flex-row justify-center gap-4 md:gap-8 mt-4">
+                    <a href="tel:+79001234567" class="hover:text-gold transition-colors">Артём: +7 (900) 123-45-67</a>
+                    <a href="tel:+79001234568" class="hover:text-gold transition-colors">Алёна: +7 (900) 123-45-68</a>
+                </div>
+            </div>
+            
+            <div class="w-full h-px bg-white/20 mb-8"></div>
+            
+            <!-- Share Buttons -->
+            <div class="mb-8 fade-in">
+                <p class="text-sm mb-4 opacity-80">Поделитесь приглашением:</p>
+                <div class="flex justify-center gap-4">
+                    <a href="https://t.me/share/url?url=&text=Приглашение%20на%20свадьбу%20Артёма%20и%20Алёны%20-%2009.08.2026" target="_blank" rel="noopener noreferrer" class="bg-white/10 hover:bg-white/20 p-3 rounded-full transition-colors" aria-label="Share on Telegram">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.295-.6.295-.002 0-.003 0-.005 0l.213-3.054 5.56-5.022c.24-.213-.054-.334-.373-.121l-6.869 4.326-2.96-.924c-.64-.203-.658-.64.135-.954l11.566-4.458c.538-.196 1.006.128.832.941z"/></svg>
+                    </a>
+                    <a href="https://wa.me/?text=Приглашение%20на%20свадьбу%20Артёма%20и%20Алёны%20-%2009.08.2026" target="_blank" rel="noopener noreferrer" class="bg-white/10 hover:bg-white/20 p-3 rounded-full transition-colors" aria-label="Share on WhatsApp">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                    </a>
+                    <a href="viber://forward?text=Приглашение%20на%20свадьбу%20Артёма%20и%20Алёны%20-%2009.08.2026" target="_blank" rel="noopener noreferrer" class="bg-white/10 hover:bg-white/20 p-3 rounded-full transition-colors" aria-label="Share on Viber">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M11.408 0C5.532.024.988 4.308.988 9.6c0 2.46 1.176 4.764 3.204 6.348.18.144.312.348.372.576l.456 2.616c.084.48.624.792 1.104.708.168-.036.324-.108.456-.216l2.34-1.872c.204-.168.468-.252.732-.24.588.036 1.176.048 1.764.048 5.868 0 10.62-4.284 10.62-9.576C22.032 4.296 17.28.024 11.408 0zm0 17.52c-.516 0-1.032-.024-1.548-.06-.408-.024-.804.12-1.116.372l-1.62 1.296-.312-1.788c-.108-.612-.456-1.152-.96-1.536-1.596-1.248-2.532-3.108-2.532-5.088 0-4.236 3.816-7.68 8.52-7.68s8.52 3.444 8.52 7.68-3.804 7.68-8.52 7.68l.568-.876z"/></svg>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="text-sm opacity-70">
+                <p class="font-serif text-xl mb-2">#ArtemAlyona2026</p>
+                <p>С любовью, Артём и Алёна</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Success Modal -->
+    <div id="successModal" class="fixed inset-0 z-50 flex items-center justify-center bg-juniper/80 backdrop-blur-sm hidden">
+        <div class="bg-candle text-juniper p-8 rounded-xl shadow-2xl max-w-sm mx-4 text-center transform scale-95 transition-transform duration-300">
+            <div class="w-16 h-16 bg-leaf rounded-full flex items-center justify-center mx-auto mb-4 text-candle">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+            </div>
+            <h3 class="text-2xl font-serif mb-2">Спасибо!</h3>
+            <p class="mb-6">Ваш ответ отправлен. Ждём вас на нашей свадьбе!</p>
+            <button onclick="document.getElementById('successModal').classList.add('hidden')" class="bg-coral text-candle px-6 py-2 rounded-full hover:bg-coral/80 transition-colors">Закрыть</button>
+        </div>
+    </div>
+
+    <script src="./scripts/main.js"></script>
+</body>
+</html>

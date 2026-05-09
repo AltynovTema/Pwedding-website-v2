@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Preview - Wedding Website</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        h1 {
+            color: #343723;
+            text-align: center;
+        }
+        .info {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .image-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .image-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .image-info {
+            padding: 15px;
+        }
+        .image-name {
+            font-weight: bold;
+            color: #343723;
+            margin-bottom: 5px;
+        }
+        .image-location {
+            color: #666;
+            font-size: 14px;
+        }
+        .missing {
+            background: #ffebee;
+            color: #c62828;
+            padding: 10px;
+            text-align: center;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>📸 Wedding Website Image Preview</h1>
+    
+    <div class="info">
+        <h2>How to Use</h2>
+        <p>Add your photos to the <code>images/</code> folder with these exact filenames:</p>
+        <ul>
+            <li><strong>hero-bg.jpg</strong> - Main hero background (1920x1080px)</li>
+            <li><strong>story-1.jpg</strong> - First story card (800x600px)</li>
+            <li><strong>story-2.jpg</strong> - Second story card (800x600px)</li>
+            <li><strong>story-3.jpg</strong> - Third story card (800x600px)</li>
+            <li><strong>venue.jpg</strong> - Venue photo (1200x800px)</li>
+            <li><strong>gallery-1.jpg</strong> to <strong>gallery-4.jpg</strong> - Gallery photos (800x800px)</li>
+        </ul>
+        <p>Then refresh this page to see your images!</p>
+    </div>
+
+    <div class="image-grid">
+        <div class="image-card">
+            <img src="./hero-bg.jpg" alt="Hero Background" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="missing" style="display:none;">Missing: hero-bg.jpg</div>
+            <div class="image-info">
+                <div class="image-name">hero-bg.jpg</div>
+                <div class="image-location">Main hero background</div>
+            </div>
+        </div>
+
+        <div class="image-card">
+            <img src="./story-1.jpg" alt="Story 1" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="missing" style="display:none;">Missing: story-1.jpg</div>
+            <div class="image-info">
+                <div class="image-name">story-1.jpg</div>
+                <div class="image-location">First story card</div>
+            </div>
+        </div>
+
+        <div class="image-card">
+            <img src="./story-2.jpg" alt="Story 2" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="missing" style="display:none;">Missing: story-2.jpg</div>
+            <div class="image-info">
+                <div class="image-name">story-2.jpg</div>
+                <div class="image-location">Second story card</div>
+            </div>
+        </div>
+
+        <div class="image-card">
+            <img src="./story-3.jpg" alt="Story 3" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="missing" style="display:none;">Missing: story-3.jpg</div>
+            <div class="image-info">
+                <div class="image-name">story-3.jpg</div>
+                <div class="image-location">Third story card</div>
+            </div>
+        </div>
+
+        <div class="image-card">
+            <img src="./venue.jpg" alt="Venue" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="missing" style="display:none;">Missing: venue.jpg</div>
+            <div class="image-info">
+                <div class="image-name">venue.jpg</div>
+                <div class="image-location">Venue location</div>
+            </div>
+        </div>
+
+        <div class="image-card">
+            <img src="./gallery-1.jpg" alt="Gallery 1" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="missing" style="display:none;">Missing: gallery-1.jpg</div>
+            <div class="image-info">
+                <div class="image-name">gallery-1.jpg</div>
+                <div class="image-location">Gallery photo 1</div>
+            </div>
+        </div>
+
+        <div class="image-card">
+            <img src="./gallery-2.jpg" alt="Gallery 2" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="missing" style="display:none;">Missing: gallery-2.jpg</div>
+            <div class="image-info">
+                <div class="image-name">gallery-2.jpg</div>
+                <div class="image-location">Gallery photo 2</div>
+            </div>
+        </div>
+
+        <div class="image-card">
+            <img src="./gallery-3.jpg" alt="Gallery 3" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="missing" style="display:none;">Missing: gallery-3.jpg</div>
+            <div class="image-info">
+                <div class="image-name">gallery-3.jpg</div>
+                <div class="image-location">Gallery photo 3</div>
+            </div>
+        </div>
+
+        <div class="image-card">
+            <img src="./gallery-4.jpg" alt="Gallery 4" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="missing" style="display:none;">Missing: gallery-4.jpg</div>
+            <div class="image-info">
+                <div class="image-name">gallery-4.jpg</div>
+                <div class="image-location">Gallery photo 4</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
