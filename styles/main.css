@@ -13,10 +13,22 @@ h1, h2, h3, h4, .font-serif {
 }
 
 .hero-bg {
-    background-image: linear-gradient(to top, rgba(52, 55, 35, 0.8) 0%, rgba(52, 55, 35, 0.1) 30%, transparent 60%), url('../images/hero-bg.jpg');
+    background-image: url('../images/hero-bg.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
+    position: relative;
+}
+
+.hero-bg::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to top, rgba(52, 55, 35, 0.8) 0%, rgba(52, 55, 35, 0.1) 30%, transparent 60%);
+    pointer-events: none;
 }
 
 .floral-border {
