@@ -13,7 +13,7 @@ h1, h2, h3, h4, .font-serif {
 }
 
 .hero-bg {
-    background-image: linear-gradient(rgba(52, 55, 35, 0.4), rgba(52, 55, 35, 0.6)), url('../images/hero-bg.jpg');
+    background-image: linear-gradient(to top, rgba(52, 55, 35, 0.8) 0%, rgba(52, 55, 35, 0.1) 30%, transparent 60%), url('../images/hero-bg.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
