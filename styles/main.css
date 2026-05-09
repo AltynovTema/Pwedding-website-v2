@@ -34,7 +34,12 @@ h1, h2, h3, h4, .font-serif {
 /* Text shadow for better readability */
 .hero-bg h1,
 .hero-bg p {
-    text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.8), 0 0 30px rgba(0, 0, 0, 0.6), -1px -1px 0 rgba(0, 0, 0, 0.4), 1px -1px 0 rgba(0, 0, 0, 0.4), -1px 1px 0 rgba(0, 0, 0, 0.4), 1px 1px 0 rgba(0, 0, 0, 0.4);
+    text-shadow: 3px 3px 10px rgba(52, 55, 35, 0.8), 0 0 30px rgba(52, 55, 35, 0.6), -1px -1px 0 rgba(137, 136, 97, 0.6), 1px -1px 0 rgba(137, 136, 97, 0.6), -1px 1px 0 rgba(137, 136, 97, 0.6), 1px 1px 0 rgba(137, 136, 97, 0.6);
+}
+
+/* Extra strong shadow for specific elements */
+.strong-shadow {
+    text-shadow: 4px 4px 12px rgba(0, 0, 0, 0.9), 0 0 40px rgba(0, 0, 0, 0.7), -2px -2px 0 rgba(0, 0, 0, 0.8), 2px -2px 0 rgba(0, 0, 0, 0.8), -2px 2px 0 rgba(0, 0, 0, 0.8), 2px 2px 0 rgba(0, 0, 0, 0.8), 0 0 60px rgba(0, 0, 0, 0.5) !important;
 }
 
 .floral-border {
