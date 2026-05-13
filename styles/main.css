@@ -13,7 +13,7 @@ h1, h2, h3, h4, .font-serif {
 }
 
 .hero-bg {
-    background-image: url('https://raw.githubusercontent.com/altynovtema/Pwedding-website-v2/main/images/hero-bg.jpg');
+    background-image: url('/Pwedding-website-v2/images/hero-bg.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
