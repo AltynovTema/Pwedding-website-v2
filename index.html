@@ -68,7 +68,7 @@
                         <a href="#story" class="hover:text-gold px-3 py-2 rounded-md text-sm font-medium transition-colors">История</a>
                         <a href="#details" class="hover:text-gold px-3 py-2 rounded-md text-sm font-medium transition-colors">Детали</a>
                         <a href="#program" class="hover:text-gold px-3 py-2 rounded-md text-sm font-medium transition-colors">Программа</a>
-                        <a href="#gallery" class="hover:text-gold px-3 py-2 rounded-md text-sm font-medium transition-colors">Галерея</a>
+
                         <a href="#transportation" class="hover:text-gold px-3 py-2 rounded-md text-sm font-medium transition-colors">Транспорт</a>
                         <a href="#faq" class="hover:text-gold px-3 py-2 rounded-md text-sm font-medium transition-colors">FAQ</a>
                         <a href="#rsvp" class="bg-coral text-candle hover:bg-coral/80 px-4 py-2 rounded-full text-sm font-medium transition-colors">RSVP</a>
@@ -88,7 +88,7 @@
                 <a href="#story" class="text-candle hover:text-gold block px-3 py-2 rounded-md text-base font-medium">История</a>
                 <a href="#details" class="text-candle hover:text-gold block px-3 py-2 rounded-md text-base font-medium">Детали</a>
                 <a href="#program" class="text-candle hover:text-gold block px-3 py-2 rounded-md text-base font-medium">Программа</a>
-                <a href="#gallery" class="text-candle hover:text-gold block px-3 py-2 rounded-md text-base font-medium">Галерея</a>
+
                 <a href="#transportation" class="text-candle hover:text-gold block px-3 py-2 rounded-md text-base font-medium">Транспорт</a>
                 <a href="#faq" class="text-candle hover:text-gold block px-3 py-2 rounded-md text-base font-medium">FAQ</a>
                 <a href="#rsvp" class="text-candle hover:text-gold block px-3 py-2 rounded-md text-base font-medium">RSVP</a>
@@ -355,6 +355,19 @@
         </div>
     </section>
 
+    <!-- Video Banner Section -->
+    <section class="w-full overflow-hidden" style="max-height: 300px;">
+        <video 
+            autoplay 
+            muted 
+            loop 
+            playsinline
+            class="w-full h-full object-cover"
+            style="display: block; max-height: 300px; width: 100%;">
+            <source src="/Pwedding-website-v2/images/queens-lake.mp4" type="video/mp4">
+        </video>
+    </section>
+
     <!-- Program Section -->
     <section id="program" class="py-20 bg-coral text-candle">
         <div class="max-w-4xl mx-auto px-4">
@@ -438,30 +451,7 @@
         </div>
     </section>
 
-    <!-- Photo Gallery Section -->
-    <section id="gallery" class="py-20 bg-leaf/10">
-        <div class="max-w-7xl mx-auto px-4">
-            <div class="text-center mb-16 fade-in">
-                <h2 class="text-4xl md:text-5xl font-serif text-juniper mb-4">Наша Галерея</h2>
-                <p class="text-leaf italic text-lg">Моменты нашей любви</p>
-            </div>
-            
-            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                <div class="aspect-square overflow-hidden rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300 fade-in">
-                    <img src="/Pwedding-website-v2/images/gallery-1.jpg" alt="Фото 1" loading="lazy" class="w-full h-full object-cover hover:scale-110 transition-transform duration-500">
-                </div>
-                <div class="aspect-square overflow-hidden rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300 fade-in">
-                    <img src="/Pwedding-website-v2/images/gallery-2.jpg" alt="Фото 2" loading="lazy" class="w-full h-full object-cover hover:scale-110 transition-transform duration-500">
-                </div>
-                <div class="aspect-square overflow-hidden rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300 fade-in">
-                    <img src="/Pwedding-website-v2/images/gallery-3.jpg" alt="Фото 3" loading="lazy" class="w-full h-full object-cover hover:scale-110 transition-transform duration-500">
-                </div>
-                <div class="aspect-square overflow-hidden rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300 fade-in">
-                    <img src="/Pwedding-website-v2/images/gallery-4.jpg" alt="Фото 4" loading="lazy" class="w-full h-full object-cover hover:scale-110 transition-transform duration-500">
-                </div>
-            </div>
-        </div>
-    </section>
+
 
     <!-- Transportation Section -->
     <section id="transportation" class="py-20 bg-candle">
