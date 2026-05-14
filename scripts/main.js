@@ -10,6 +10,9 @@ window.addEventListener('load', () => {
     
     // Initialize Calendar Buttons
     initCalendarButtons();
+    
+    // Initialize Venue Map
+    initVenueMap();
 });
 
 // FAQ Toggle Function
@@ -236,10 +239,10 @@ function initCalendarButtons() {
             end: new Date('Aug 09, 2026 23:00'),
             
             // Event Address
-            address: 'Усадьба \"Серебряный Век\", Московская область, д. Жуковка, Рублёвское шоссе',
+            address: 'Queen\'s Lake, Коттеджный посёлок Княжье Озеро, вл1, Московская область, Россия',
             
             // Event Description
-            description: "Мы с нетерпением ждём встречи с вами в наш важный день! Сбор гостей в 15:00."
+            description: "Мы с нетерпением ждём встречи с вами в наш важный день! Сбор гостей в 15:00. Площадка: Queen's Lake. Телефон: +7 (495) 968-27-27"
         }
     });
     
@@ -248,4 +251,71 @@ function initCalendarButtons() {
         container.innerHTML = '';
         container.appendChild(myCalendar);
     }
+}
+
+// Venue Map Initialization
+function initVenueMap() {
+    // Check if Yandex Maps API is loaded
+    if (typeof ymaps === 'undefined') {
+        console.warn('Yandex Maps API not loaded - map will not display');
+        const mapContainer = document.getElementById('venue-map');
+        if (mapContainer) {
+            mapContainer.innerHTML = '<div style="display: flex; align-items: center; justify-content: center; height: 100%; background: #f5f5f5; color: #666; text-align: center; padding: 20px;"><div><p style="font-size: 48px; margin-bottom: 10px;">🗺️</p><p>Карта загружается...</p></div></div>';
+        }
+        return;
+    }
+    
+    // Coordinates for Queen's Lake, Княжье Озеро
+    const venueCoords = [55.815556, 37.048020];
+    
+    ymaps.ready(function() {
+        try {
+            var myMap = new ymaps.Map("venue-map", {
+                center: venueCoords,
+                zoom: 14,
+                controls: ['zoomControl', 'fullscreenControl']
+            });
+            
+            // Disable scroll zoom initially
+            myMap.behaviors.disable('scrollZoom');
+            
+            // Create a custom placemark
+            var myPlacemark = new ymaps.Placemark(venueCoords, {
+                hintContent: 'Queen\'s Lake',
+                balloonContent: '<div style="padding: 10px;">' +
+                               '<strong style="font-size: 16px; color: #7BA3B8;">Queen\'s Lake</strong><br>' +
+                               '<p style="margin: 8px 0; color: #666;">Коттеджный посёлок Княжье Озеро, вл1<br>Московская область, Россия</p>' +
+                               '<p style="margin: 8px 0;"><strong>Сбор гостей:</strong> 15:00</p>' +
+                               '<p style="margin: 8px 0;"><strong>Тел:</strong> <a href="tel:+74959682727">+7 (495) 968-27-27</a></p>' +
+                               '<a href="https://queens-lake-1736520512.clients.site" target="_blank" ' +
+                               'style="display: inline-block; margin-top: 8px; padding: 8px 16px; background-color: #7BA3B8; ' +
+                               'color: white; text-decoration: none; border-radius: 6px; font-weight: 500;">Сайт площадки</a>' +
+                               '</div>'
+            }, {
+                preset: 'islands#redDotIcon',
+                iconColor: '#E8A0A0'
+            });
+            
+            myMap.geoObjects.add(myPlacemark);
+            
+            // Click on overlay to enable map interaction
+            const mapOverlay = document.getElementById('map-overlay');
+            if (mapOverlay) {
+                mapOverlay.addEventListener('click', function() {
+                    this.style.opacity = '0';
+                    this.style.pointerEvents = 'none';
+                    myMap.behaviors.enable('scrollZoom');
+                    myMap.behaviors.enable('drag');
+                });
+            }
+            
+            // Auto-open balloon after 2 seconds
+            setTimeout(function() {
+                myPlacemark.balloon.open();
+            }, 2000);
+            
+        } catch (error) {
+            console.error('Error initializing map:', error);
+        }
+    });
 }
