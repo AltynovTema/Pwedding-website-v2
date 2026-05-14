@@ -7,6 +7,9 @@ window.addEventListener('load', () => {
             loadingScreen.style.display = 'none';
         }, 500);
     }, 800);
+    
+    // Initialize Calendar Buttons
+    initCalendarButtons();
 });
 
 // FAQ Toggle Function
@@ -205,3 +208,44 @@ window.addEventListener('scroll', () => {
         }
     });
 });
+
+// Calendar Buttons Initialization
+function initCalendarButtons() {
+    if (typeof createCalendar === 'undefined') {
+        console.log('Ouical library not loaded');
+        return;
+    }
+    
+    var myCalendar = createCalendar({
+        options: {
+            class: '',
+            id: 'wedding-calendar'
+        },
+        data: {
+            // Event title
+            title: "Свадьба Артёма и Алёны",
+            
+            // Event start date
+            start: new Date('Aug 09, 2026 15:00'),
+            
+            // Event duration (IN MINUTES)
+            // duration: 120,
+            
+            // You can also choose to set an end time
+            // If an end time is set, this will take precedence over duration
+            end: new Date('Aug 09, 2026 23:00'),
+            
+            // Event Address
+            address: 'Усадьба \"Серебряный Век\", Московская область, д. Жуковка, Рублёвское шоссе',
+            
+            // Event Description
+            description: "Мы с нетерпением ждём встречи с вами в наш важный день! Сбор гостей в 15:00."
+        }
+    });
+    
+    var container = document.getElementById('calendar-buttons-container');
+    if (container) {
+        container.innerHTML = '';
+        container.appendChild(myCalendar);
+    }
+}
