@@ -88,6 +88,8 @@ h1, h2, h3, h4, .font-serif {
 .sparkle-dot {
     position: absolute;
     border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
     pointer-events: none;
     will-change: transform, opacity;
     animation: sparkle-rise linear forwards;
