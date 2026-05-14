@@ -12,9 +12,7 @@
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💕</text></svg>">
     <link rel="stylesheet" href="./styles/main.css">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&f[]=clash-display@400,500,600,700&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Montserrat:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
             theme: {
@@ -54,7 +52,7 @@
     </button>
 
     <!-- Navigation -->
-    <nav class="fixed w-full z-50 bg-juniper/90 backdrop-blur-sm text-candle transition-all duration-300" id="navbar">
+    <nav class="fixed w-full z-50 bg-juniper text-candle transition-all duration-300" id="navbar">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
                 <div class="flex-shrink-0 font-serif text-xl font-bold">А & А</div>
@@ -93,18 +91,23 @@
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="hero-bg h-screen flex items-end justify-center pb-16 relative">
-        <div class="text-center text-candle px-4 fade-in mb-8">
-            <p class="text-xl md:text-2xl font-serif italic mb-6">ПРИГЛАШЕНИЕ НА СВАДЬБУ</p>
-            <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold mb-4 leading-tight">Артём & Алёна</h1>
-            <div class="w-20 h-1 bg-gold mx-auto mb-4"></div>
-            <p class="text-xl md:text-2xl font-serif italic mb-8">09 Августа 2026</p>
-            <a href="#rsvp" class="inline-block bg-coral text-candle px-8 py-3 rounded-full text-lg font-medium hover:bg-coral/90 transition-transform transform hover:scale-105 shadow-lg">
+    <section id="home" class="hero-bg min-h-screen flex items-end justify-center pb-16 relative">
+        <div class="text-center text-candle px-6 max-w-4xl">
+            <p class="text-base md:text-lg mb-6 tracking-[0.3em] uppercase font-sans font-light fade-in">Приглашение на свадьбу</p>
+            <h1 class="font-serif text-5xl md:text-7xl lg:text-8xl font-bold mb-4 leading-[0.9] fade-in fade-in-delay">Артём</h1>
+            <div class="flex items-center justify-center gap-4 my-4 fade-in fade-in-delay">
+                <div class="w-12 md:w-20 h-px bg-candle"></div>
+                <span class="font-serif text-2xl md:text-3xl italic text-candle">&amp;</span>
+                <div class="w-12 md:w-20 h-px bg-candle"></div>
+            </div>
+            <h1 class="font-serif text-5xl md:text-7xl lg:text-8xl font-bold mb-8 leading-[0.9] fade-in fade-in-delay-2">Алёна</h1>
+            <p class="font-serif text-2xl md:text-3xl italic mb-10 text-candle/80 fade-in fade-in-delay-2">09 августа 2026</p>
+            <a href="#rsvp" class="inline-block bg-coral text-candle px-8 py-3 rounded-full text-lg font-medium hover:bg-coral/90 transition-transform transform hover:scale-105 shadow-lg fade-in fade-in-delay-2">
                 Подтвердить участие
             </a>
         </div>
-        <div class="absolute bottom-8 left-0 right-0 flex justify-center animate-bounce text-candle">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+        <div class="absolute bottom-4 left-0 right-0 flex justify-center animate-bounce">
+            <svg class="w-8 h-8 text-candle" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
         </div>
     </section>
 
@@ -112,22 +115,22 @@
     <section class="py-16 bg-juniper text-candle">
         <div class="max-w-4xl mx-auto text-center px-4">
             <h2 class="text-3xl md:text-4xl font-serif mb-8 fade-in">До нашего особенного дня</h2>
-            <div id="countdown" class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 fade-in">
-                <div class="bg-coral/20 rounded-lg p-4 md:p-6 border border-coral/30">
-                    <span id="days" class="block text-4xl md:text-6xl font-bold font-serif">00</span>
-                    <span class="text-sm uppercase tracking-wider">Дней</span>
+            <div id="countdown" class="flex justify-center items-center gap-4 md:gap-8 flex-wrap fade-in">
+                <div class="text-center">
+                    <span id="days" class="block text-4xl md:text-6xl font-bold font-sans text-gold">00</span>
+                    <p class="text-sm uppercase tracking-wider mt-2">Дней</p>
                 </div>
-                <div class="bg-coral/20 rounded-lg p-4 md:p-6 border border-coral/30">
-                    <span id="hours" class="block text-4xl md:text-6xl font-bold font-serif">00</span>
-                    <span class="text-sm uppercase tracking-wider">Часов</span>
+                <div class="text-center">
+                    <span id="hours" class="block text-4xl md:text-6xl font-bold font-sans text-gold">00</span>
+                    <p class="text-sm uppercase tracking-wider mt-2">Часов</p>
                 </div>
-                <div class="bg-coral/20 rounded-lg p-4 md:p-6 border border-coral/30">
-                    <span id="minutes" class="block text-4xl md:text-6xl font-bold font-serif">00</span>
-                    <span class="text-sm uppercase tracking-wider">Минут</span>
+                <div class="text-center">
+                    <span id="minutes" class="block text-4xl md:text-6xl font-bold font-sans text-gold">00</span>
+                    <p class="text-sm uppercase tracking-wider mt-2">Минут</p>
                 </div>
-                <div class="bg-coral/20 rounded-lg p-4 md:p-6 border border-coral/30">
-                    <span id="seconds" class="block text-4xl md:text-6xl font-bold font-serif">00</span>
-                    <span class="text-sm uppercase tracking-wider">Секунд</span>
+                <div class="text-center">
+                    <span id="seconds" class="block text-4xl md:text-6xl font-bold font-sans text-gold">00</span>
+                    <p class="text-sm uppercase tracking-wider mt-2">Секунд</p>
                 </div>
             </div>
         </div>
