@@ -94,6 +94,33 @@ document.querySelectorAll('.fade-in').forEach(el => {
     observer.observe(el);
 });
 
+// Waypoint Animations for Story Section
+const waypointObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const element = entry.target;
+            
+            // Add animation class based on element's class
+            if (element.classList.contains('wp1') || element.classList.contains('wp3') || 
+                element.classList.contains('wp5') || element.classList.contains('wp8')) {
+                element.classList.add('animated', 'fadeInLeft');
+            } else if (element.classList.contains('wp2') || element.classList.contains('wp4') || 
+                       element.classList.contains('wp6') || element.classList.contains('wp9')) {
+                element.classList.add('animated', 'fadeInRight');
+            } else if (element.classList.contains('wp7')) {
+                element.classList.add('animated', 'fadeInUp');
+            }
+            
+            waypointObserver.unobserve(element);
+        }
+    });
+}, { threshold: 0.25 });
+
+// Observe all waypoint elements
+document.querySelectorAll('.wp1, .wp2, .wp3, .wp4, .wp5, .wp6, .wp7, .wp8, .wp9').forEach(el => {
+    waypointObserver.observe(el);
+});
+
 // Form Handling with Validation
 document.getElementById('rsvpForm').addEventListener('submit', function(e) {
     e.preventDefault();
