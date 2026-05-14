@@ -72,6 +72,137 @@ h1, h2, h3, h4, .font-serif {
     transform: translateY(0);
 }
 
+/* ===== ЧАСТИЦЫ И ОВЕРЛЕЙ ===== */
+#particle-overlay {
+    position: fixed;
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%;
+    pointer-events: none; 
+    z-index: 100; 
+    overflow: hidden;
+}
+
+/* Dot sparkle */
+.sparkle-dot {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    animation: sparkle-rise linear forwards;
+}
+@keyframes sparkle-rise {
+    0% {
+        opacity: 0;
+        transform: translateY(0) scale(0) rotate(0deg);
+    }
+    15% {
+        opacity: 1;
+        transform: translateY(-15px) scale(1) rotate(30deg);
+    }
+    50% {
+        opacity: 0.7;
+        transform: translateY(-80px) scale(0.7) rotate(120deg);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-160px) scale(0) rotate(360deg);
+    }
+}
+
+/* Star sparkle */
+.sparkle-star {
+    position: absolute;
+    pointer-events: none;
+    animation: sparkle-star-rise linear forwards;
+}
+@keyframes sparkle-star-rise {
+    0% {
+        opacity: 0;
+        transform: translateY(0) scale(0) rotate(0deg);
+    }
+    12% {
+        opacity: 1;
+        transform: translateY(-12px) scale(1.2) rotate(0deg);
+    }
+    50% {
+        opacity: 0.85;
+        transform: translateY(-70px) scale(0.9) rotate(135deg);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-150px) scale(0.1) rotate(360deg);
+    }
+}
+
+/* Diamond sparkle */
+.sparkle-diamond {
+    position: absolute;
+    pointer-events: none;
+    animation: sparkle-diamond-rise linear forwards;
+}
+@keyframes sparkle-diamond-rise {
+    0% {
+        opacity: 0;
+        transform: translateY(0) scale(0) rotate(45deg);
+    }
+    10% {
+        opacity: 1;
+        transform: translateY(-10px) scale(1) rotate(45deg);
+    }
+    60% {
+        opacity: 0.7;
+        transform: translateY(-100px) scale(0.6) rotate(180deg);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-180px) scale(0) rotate(405deg);
+    }
+}
+
+/* Cross sparkle (twinkle) */
+.sparkle-cross {
+    position: absolute;
+    pointer-events: none;
+    animation: sparkle-twinkle ease-in-out forwards;
+}
+@keyframes sparkle-twinkle {
+    0% {
+        opacity: 0;
+        transform: scale(0) rotate(0deg);
+    }
+    20% {
+        opacity: 1;
+        transform: scale(1) rotate(15deg);
+    }
+    50% {
+        opacity: 0.9;
+        transform: scale(1.3) rotate(0deg);
+    }
+    80% {
+        opacity: 0.6;
+        transform: scale(0.8) rotate(-15deg);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0) rotate(0deg);
+    }
+}
+
+.ambient-glow {
+    position: absolute; 
+    border-radius: 50%; 
+    filter: blur(60px);
+    opacity: 0; 
+    animation: ambient-pulse 8s ease-in-out infinite; 
+    pointer-events: none;
+}
+
+@keyframes ambient-pulse {
+    0%, 100% { opacity: 0; transform: scale(0.8); }
+    50% { opacity: 0.15; transform: scale(1.2); }
+}
+
 /* Плавное появление */
 @keyframes float {
     0%, 100% { transform: translateY(0px); }
