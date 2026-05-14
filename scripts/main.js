@@ -8,9 +8,6 @@ window.addEventListener('load', () => {
         }, 500);
     }, 800);
     
-    // Initialize Calendar Buttons
-    initCalendarButtons();
-    
     // Initialize Venue Map
     initVenueMap();
 });
@@ -212,46 +209,55 @@ window.addEventListener('scroll', () => {
     });
 });
 
-// Calendar Buttons Initialization
-function initCalendarButtons() {
-    if (typeof createCalendar === 'undefined') {
-        console.log('Ouical library not loaded');
-        return;
-    }
-    
-    var myCalendar = createCalendar({
-        options: {
-            class: '',
-            id: 'wedding-calendar'
-        },
-        data: {
-            // Event title
-            title: "Свадьба Артёма и Алёны",
-            
-            // Event start date
-            start: new Date('Aug 09, 2026 15:00'),
-            
-            // Event duration (IN MINUTES)
-            // duration: 120,
-            
-            // You can also choose to set an end time
-            // If an end time is set, this will take precedence over duration
-            end: new Date('Aug 09, 2026 23:00'),
-            
-            // Event Address
-            address: 'Queen\'s Lake, Коттеджный посёлок Княжье Озеро, вл1, Московская область, Россия',
-            
-            // Event Description
-            description: "Мы с нетерпением ждём встречи с вами в наш важный день! Сбор гостей в 15:00. Площадка: Queen's Lake. Телефон: +7 (495) 968-27-27"
-        }
-    });
-    
-    var container = document.getElementById('calendar-buttons-container');
-    if (container) {
-        container.innerHTML = '';
-        container.appendChild(myCalendar);
+// Calendar Functions
+function addToCalendar(type) {
+    const event = {
+        title: 'Свадьба Артёма и Алёны',
+        description: 'Мы с нетерпением ждём встречи с вами в наш важный день! Сбор гостей в 15:00.',
+        location: 'Queen\'s Lake, Коттеджный посёлок Княжье Озеро, вл1, Московская область, Россия',
+        startTime: '20260809T150000',
+        endTime: '20260809T230000'
+    };
+
+    if (type === 'google') {
+        const url = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(event.title)}&dates=${event.startTime}/${event.endTime}&details=${encodeURIComponent(event.description)}&location=${encodeURIComponent(event.location)}`;
+        window.open(url, '_blank');
+    } else if (type === 'apple') {
+        downloadICS();
     }
 }
+
+function downloadICS() {
+    const icsContent = `BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Wedding Invitation//RU
+BEGIN:VEVENT
+DTSTART:20260809T150000
+DTEND:20260809T230000
+SUMMARY:Свадьба Артёма и Алёны
+DESCRIPTION:Мы с нетерпением ждём встречи с вами в наш важный день! Сбор гостей в 15:00.
+LOCATION:Queen's Lake\, Коттеджный посёлок Княжье Озеро\, вл1\, Московская область\, Россия
+STATUS:CONFIRMED
+SEQUENCE:0
+BEGIN:VALARM
+TRIGGER:-PT24H
+DESCRIPTION:Напоминание о свадьбе Артёма и Алёны
+ACTION:DISPLAY
+END:VALARM
+END:VEVENT
+END:VCALENDAR`;
+
+    const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = 'wedding-artem-alena.ics';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+}
+
+// Calendar Buttons Initialization (not needed - using custom buttons)
+// function initCalendarButtons() { ... }
 
 // Venue Map Initialization
 function initVenueMap() {
