@@ -89,24 +89,25 @@ h1, h2, h3, h4, .font-serif {
     position: absolute;
     border-radius: 50%;
     pointer-events: none;
+    will-change: transform, opacity;
     animation: sparkle-rise linear forwards;
 }
 @keyframes sparkle-rise {
     0% {
         opacity: 0;
-        transform: translateY(0) scale(0) rotate(0deg);
+        transform: translateY(0) scale(0);
     }
     15% {
-        opacity: 1;
-        transform: translateY(-15px) scale(1) rotate(30deg);
+        opacity: 0.8;
+        transform: translateY(-15px) scale(1);
     }
     50% {
-        opacity: 0.7;
-        transform: translateY(-80px) scale(0.7) rotate(120deg);
+        opacity: 0.5;
+        transform: translateY(-80px) scale(0.7);
     }
     100% {
         opacity: 0;
-        transform: translateY(-160px) scale(0) rotate(360deg);
+        transform: translateY(-160px) scale(0);
     }
 }
 
@@ -114,24 +115,25 @@ h1, h2, h3, h4, .font-serif {
 .sparkle-star {
     position: absolute;
     pointer-events: none;
+    will-change: transform, opacity;
     animation: sparkle-star-rise linear forwards;
 }
 @keyframes sparkle-star-rise {
     0% {
         opacity: 0;
-        transform: translateY(0) scale(0) rotate(0deg);
+        transform: translateY(0) scale(0);
     }
     12% {
-        opacity: 1;
-        transform: translateY(-12px) scale(1.2) rotate(0deg);
+        opacity: 0.9;
+        transform: translateY(-12px) scale(1.2);
     }
     50% {
-        opacity: 0.85;
-        transform: translateY(-70px) scale(0.9) rotate(135deg);
+        opacity: 0.6;
+        transform: translateY(-70px) scale(0.9);
     }
     100% {
         opacity: 0;
-        transform: translateY(-150px) scale(0.1) rotate(360deg);
+        transform: translateY(-150px) scale(0.1);
     }
 }
 
@@ -139,6 +141,7 @@ h1, h2, h3, h4, .font-serif {
 .sparkle-diamond {
     position: absolute;
     pointer-events: none;
+    will-change: transform, opacity;
     animation: sparkle-diamond-rise linear forwards;
 }
 @keyframes sparkle-diamond-rise {
@@ -147,11 +150,11 @@ h1, h2, h3, h4, .font-serif {
         transform: translateY(0) scale(0) rotate(45deg);
     }
     10% {
-        opacity: 1;
+        opacity: 0.8;
         transform: translateY(-10px) scale(1) rotate(45deg);
     }
     60% {
-        opacity: 0.7;
+        opacity: 0.5;
         transform: translateY(-100px) scale(0.6) rotate(180deg);
     }
     100% {
@@ -164,28 +167,29 @@ h1, h2, h3, h4, .font-serif {
 .sparkle-cross {
     position: absolute;
     pointer-events: none;
+    will-change: transform, opacity;
     animation: sparkle-twinkle ease-in-out forwards;
 }
 @keyframes sparkle-twinkle {
     0% {
         opacity: 0;
-        transform: scale(0) rotate(0deg);
+        transform: scale(0);
     }
     20% {
-        opacity: 1;
-        transform: scale(1) rotate(15deg);
+        opacity: 0.9;
+        transform: scale(1);
     }
     50% {
-        opacity: 0.9;
-        transform: scale(1.3) rotate(0deg);
+        opacity: 0.7;
+        transform: scale(1.3);
     }
     80% {
-        opacity: 0.6;
-        transform: scale(0.8) rotate(-15deg);
+        opacity: 0.4;
+        transform: scale(0.8);
     }
     100% {
         opacity: 0;
-        transform: scale(0) rotate(0deg);
+        transform: scale(0);
     }
 }
 
