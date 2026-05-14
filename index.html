@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -154,12 +155,14 @@
                 </div>
                 <div class="col-md-6" style="text-align: center;">
                     <p class="text-lg leading-relaxed">
-                        Меня зовут Артём, и это история о том, как мой виртуальный клик стал началом нашей общей истории 💫<br><br>
-                        Переписка ВКонтакте плавно перешла в реальность: у входа в метро Северного речного вокзала, в первом же взгляде и слове, я понял — это она 💕 Мы строили наши отношения, встречаясь по выходным, пока длительная командировка не разлучила нас ✈️<br><br>
-                        Расстояние стало испытанием, но лишь укрепило то, что уже связывало наши сердца ❤️<br><br>
-                        Вернувшись, мы стали жить вместе 🏡 и однажды отправились в Сочи, где у моря 🌊 я попросил её стать моей женой 💍<br><br>
-                        Её «да» прозвучало как обещание навсегда ✨<br><br>
-                        И теперь — новая глава нашей жизни 📖
+                        Меня зовут Артём, и это история о том, как мой виртуальный клик стал началом нашей общей истории 💫<br>
+                        Переписка ВКонтакте плавно перешла в реальность: у входа в метро Северного речного вокзала, в первом же взгляде и слове, я понял — это она 💕 Мы строили наши отношения, встречаясь по выходным, пока длительная командировка не разлучила нас ✈️<br>
+                        Расстояние стало испытанием, но лишь укрепило то, что уже связывало наши сердца ❤️<br>
+                        Вернувшись, мы стали жить вместе 🏡 и однажды отправились в Сочи, где у моря 🌊 я попросил её стать моей женой 💍<br>
+                        Её «да» прозвучало как обещание навсегда ✨<br>
+                        И теперь — новая глава нашей жизни 📖<br>
+                        Мы просим вас поддержать нас в этот ответственный день 🫶<br>
+                        Спасибо каждому из вас за то, что разделите с нами радость этого дня и наполните его частичкой своей любви!
                     </p>
                 </div>
                 <div class="col-md-3 hidden-sm hidden-xs wp2">
@@ -582,7 +585,7 @@
         function createSparkleDot() {
             const sparkle = document.createElement('div');
             sparkle.className = 'sparkle-dot';
-            const size = 3 + Math.random() * 5;
+            const size = (3 + Math.random() * 5) * 2;
             sparkle.style.width = size + 'px';
             sparkle.style.height = size + 'px';
             sparkle.style.borderRadius = '50%';
@@ -601,17 +604,17 @@
         function createSparkleStar() {
             const sparkle = document.createElement('div');
             sparkle.className = 'sparkle-star';
-            const size = 8 + Math.random() * 6;
+            const size = (8 + Math.random() * 6) * 2;
             const color = sparkleColors[Math.floor(Math.random() * sparkleColors.length)];
             sparkle.style.width = size + 'px';
             sparkle.style.height = size + 'px';
-            sparkle.style.borderRadius = '50%';
             sparkle.style.left = (Math.random() * 100) + '%';
             sparkle.style.top = (Math.random() * 100) + '%';
-            sparkle.style.background = color;
-            sparkle.style.opacity = '0.7';
             sparkle.style.animationDuration = (2.5 + Math.random() * 2) + 's';
             sparkle.style.animationDelay = Math.random() * 0.3 + 's';
+            sparkle.innerHTML = `<svg width="${size}" height="${size}" viewBox="0 0 16 16" fill="none">
+                <path d="M8 0L9.5 6.5L16 8L9.5 9.5L8 16L6.5 9.5L0 8L6.5 6.5L8 0Z" fill="${color}"/>
+            </svg>`;
             overlay.appendChild(sparkle);
             const totalDuration = parseFloat(sparkle.style.animationDuration) * 1000 + parseFloat(sparkle.style.animationDelay) * 1000 + 300;
             setTimeout(() => sparkle.remove(), totalDuration);
@@ -621,7 +624,7 @@
         function createSparkleDiamond() {
             const sparkle = document.createElement('div');
             sparkle.className = 'sparkle-diamond';
-            const size = 4 + Math.random() * 6;
+            const size = (4 + Math.random() * 6) * 2;
             const color = sparkleColors[Math.floor(Math.random() * sparkleColors.length)];
             sparkle.style.width = size + 'px';
             sparkle.style.height = size + 'px';
@@ -640,17 +643,17 @@
         function createSparkleCross() {
             const sparkle = document.createElement('div');
             sparkle.className = 'sparkle-cross';
-            const size = 10 + Math.random() * 8;
+            const size = (10 + Math.random() * 8) * 2;
             const color = sparkleColors[Math.floor(Math.random() * sparkleColors.length)];
             sparkle.style.width = size + 'px';
             sparkle.style.height = size + 'px';
-            sparkle.style.borderRadius = '50%';
             sparkle.style.left = (Math.random() * 100) + '%';
             sparkle.style.top = (Math.random() * 100) + '%';
-            sparkle.style.background = color;
-            sparkle.style.opacity = '0.6';
             sparkle.style.animationDuration = (1.5 + Math.random() * 1.5) + 's';
             sparkle.style.animationDelay = Math.random() * 0.2 + 's';
+            sparkle.innerHTML = `<svg width="${size}" height="${size}" viewBox="0 0 20 20" fill="none">
+                <path d="M10 2L11.5 8.5L18 10L11.5 11.5L10 18L8.5 11.5L2 10L8.5 8.5L10 2Z" fill="${color}" opacity="0.8"/>
+            </svg>`;
             overlay.appendChild(sparkle);
             const totalDuration = parseFloat(sparkle.style.animationDuration) * 1000 + parseFloat(sparkle.style.animationDelay) * 1000 + 300;
             setTimeout(() => sparkle.remove(), totalDuration);
@@ -670,7 +673,7 @@
         function createAmbientGlow() {
             const glow = document.createElement('div');
             glow.className = 'ambient-glow';
-            const size = 150 + Math.random() * 200;
+            const size = (150 + Math.random() * 200) * 2;
             const glowColors = ['#F8C8D4', '#B8D4EA', '#E8DDE8'];
             glow.style.width = size + 'px';
             glow.style.height = size + 'px';
