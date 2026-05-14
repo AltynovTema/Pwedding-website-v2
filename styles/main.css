@@ -120,6 +120,11 @@ h1, h2, h3, h4, .font-serif {
     will-change: transform, opacity;
     animation: sparkle-star-rise linear forwards;
 }
+.sparkle-star svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
 @keyframes sparkle-star-rise {
     0% {
         opacity: 0;
@@ -171,6 +176,11 @@ h1, h2, h3, h4, .font-serif {
     pointer-events: none;
     will-change: transform, opacity;
     animation: sparkle-twinkle ease-in-out forwards;
+}
+.sparkle-cross svg {
+    display: block;
+    width: 100%;
+    height: 100%;
 }
 @keyframes sparkle-twinkle {
     0% {

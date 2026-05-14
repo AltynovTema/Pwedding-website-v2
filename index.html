@@ -600,44 +600,9 @@
             setTimeout(() => sparkle.remove(), totalDuration);
         }
 
-        // --- Star Sparkle ---
-        function createSparkleStar() {
-            const sparkle = document.createElement('div');
-            sparkle.className = 'sparkle-star';
-            const size = (8 + Math.random() * 6) * 2;
-            const color = sparkleColors[Math.floor(Math.random() * sparkleColors.length)];
-            sparkle.style.width = size + 'px';
-            sparkle.style.height = size + 'px';
-            sparkle.style.left = (Math.random() * 100) + '%';
-            sparkle.style.top = (Math.random() * 100) + '%';
-            sparkle.style.animationDuration = (2.5 + Math.random() * 2) + 's';
-            sparkle.style.animationDelay = Math.random() * 0.3 + 's';
-            sparkle.innerHTML = `<svg width="${size}" height="${size}" viewBox="0 0 16 16" fill="none">
-                <path d="M8 0L9.5 6.5L16 8L9.5 9.5L8 16L6.5 9.5L0 8L6.5 6.5L8 0Z" fill="${color}"/>
-            </svg>`;
-            overlay.appendChild(sparkle);
-            const totalDuration = parseFloat(sparkle.style.animationDuration) * 1000 + parseFloat(sparkle.style.animationDelay) * 1000 + 300;
-            setTimeout(() => sparkle.remove(), totalDuration);
-        }
+        // --- Star Sparkle (removed) ---
 
-        // --- Diamond Sparkle ---
-        function createSparkleDiamond() {
-            const sparkle = document.createElement('div');
-            sparkle.className = 'sparkle-diamond';
-            const size = (4 + Math.random() * 6) * 2;
-            const color = sparkleColors[Math.floor(Math.random() * sparkleColors.length)];
-            sparkle.style.width = size + 'px';
-            sparkle.style.height = size + 'px';
-            sparkle.style.borderRadius = '50%';
-            sparkle.style.left = (Math.random() * 100) + '%';
-            sparkle.style.top = (Math.random() * 100) + '%';
-            sparkle.style.background = color;
-            sparkle.style.animationDuration = (2 + Math.random() * 2.5) + 's';
-            sparkle.style.animationDelay = Math.random() * 0.3 + 's';
-            overlay.appendChild(sparkle);
-            const totalDuration = parseFloat(sparkle.style.animationDuration) * 1000 + parseFloat(sparkle.style.animationDelay) * 1000 + 300;
-            setTimeout(() => sparkle.remove(), totalDuration);
-        }
+        // --- Diamond Sparkle (removed) ---
 
         // --- Cross/Twinkle Sparkle ---
         function createSparkleCross() {
@@ -651,9 +616,22 @@
             sparkle.style.top = (Math.random() * 100) + '%';
             sparkle.style.animationDuration = (1.5 + Math.random() * 1.5) + 's';
             sparkle.style.animationDelay = Math.random() * 0.2 + 's';
-            sparkle.innerHTML = `<svg width="${size}" height="${size}" viewBox="0 0 20 20" fill="none">
-                <path d="M10 2L11.5 8.5L18 10L11.5 11.5L10 18L8.5 11.5L2 10L8.5 8.5L10 2Z" fill="${color}" opacity="0.8"/>
-            </svg>`;
+            
+            const svgNS = "http://www.w3.org/2000/svg";
+            const svg = document.createElementNS(svgNS, "svg");
+            svg.setAttribute("width", size);
+            svg.setAttribute("height", size);
+            svg.setAttribute("viewBox", "0 0 20 20");
+            svg.setAttribute("fill", "none");
+            
+            const path = document.createElementNS(svgNS, "path");
+            path.setAttribute("d", "M10 2L11.5 8.5L18 10L11.5 11.5L10 18L8.5 11.5L2 10L8.5 8.5L10 2Z");
+            path.setAttribute("fill", color);
+            path.setAttribute("opacity", "0.8");
+            
+            svg.appendChild(path);
+            sparkle.appendChild(svg);
+            
             overlay.appendChild(sparkle);
             const totalDuration = parseFloat(sparkle.style.animationDuration) * 1000 + parseFloat(sparkle.style.animationDelay) * 1000 + 300;
             setTimeout(() => sparkle.remove(), totalDuration);
@@ -661,7 +639,7 @@
 
         // Create a burst of mixed sparkles
         function createSparkleBurst(count) {
-            const types = [createSparkleDot, createSparkleStar, createSparkleDiamond, createSparkleCross];
+            const types = [createSparkleDot, createSparkleCross];
             for (let i = 0; i < count; i++) {
                 setTimeout(() => {
                     types[Math.floor(Math.random() * types.length)]();
@@ -689,11 +667,11 @@
         }
 
         // --- Main Scheduling ---
-        // Sparkles every 3-5 seconds (reduced for performance)
+        // Sparkles every 1.5-2.5 seconds (increased frequency)
         function scheduleSparkle() {
-            const delay = 3000 + Math.random() * 2000;
+            const delay = 1500 + Math.random() * 1000;
             setTimeout(() => {
-                const burstCount = Math.random() > 0.6 ? Math.floor(Math.random() * 2) + 1 : 1;
+                const burstCount = Math.random() > 0.5 ? Math.floor(Math.random() * 3) + 1 : 1;
                 createSparkleBurst(burstCount);
                 scheduleSparkle();
             }, delay);
@@ -710,12 +688,12 @@
         scheduleSparkle();
         initAmbientGlows();
 
-        // Extra sparkles on scroll (reduced)
+        // Extra sparkles on scroll (increased)
         let lastScrollSparkle = 0;
         window.addEventListener('scroll', () => {
             const now = Date.now();
-            if (now - lastScrollSparkle > 5000) {
-                createSparkleBurst(1);
+            if (now - lastScrollSparkle > 2500) {
+                createSparkleBurst(2);
                 lastScrollSparkle = now;
             }
         });
