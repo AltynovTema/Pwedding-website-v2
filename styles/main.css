@@ -350,23 +350,58 @@ a:focus {
     }
 }
 
-.hidden-sm {
-    display: none;
-}
-
+/* Bootstrap-like responsive visibility classes */
 .hidden-xs {
-    display: none;
+    display: block !important;
 }
 
-@media (min-width: 768px) {
-    .hidden-sm {
-        display: block;
+.hidden-sm {
+    display: block !important;
+}
+
+.hidden-md {
+    display: block !important;
+}
+
+.hidden-lg {
+    display: block !important;
+}
+
+/* Extra small devices (phones, less than 768px) */
+@media (max-width: 767px) {
+    .hidden-xs {
+        display: none !important;
     }
 }
 
-@media (min-width: 992px) {
-    .hidden-xs {
-        display: block;
+/* Small devices (tablets, 768px and up) */
+@media (min-width: 768px) and (max-width: 991px) {
+    .hidden-sm {
+        display: none !important;
+    }
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: 992px) and (max-width: 1199px) {
+    .hidden-md {
+        display: none !important;
+    }
+}
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+    .hidden-lg {
+        display: none !important;
+    }
+}
+
+.md-hidden {
+    display: block;
+}
+
+@media (min-width: 768px) {
+    .md-hidden {
+        display: none !important;
     }
 }
 
@@ -438,17 +473,18 @@ a:focus {
     align-items: stretch;
 }
 
+#story > .row:first-of-type {
+    min-height: 400px;
+}
+
 #story .col-md-3 {
     display: flex;
     flex-direction: column;
 }
 
 #story .col-md-3 img {
-    flex: 1;
     width: 100%;
-    height: auto;
-    min-height: 200px;
-    max-height: 600px;
+    height: 100%;
     object-fit: cover;
     object-position: center;
 }
