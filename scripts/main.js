@@ -126,20 +126,15 @@ document.querySelectorAll('.wp1, .wp2, .wp3, .wp4, .wp5, .wp6, .wp7, .wp8, .wp9'
     waypointObserver.observe(el);
 });
 
-// Form Handling with Validation and Telegram Integration
+// Form Handling with Validation and Email Integration
 document.getElementById('rsvpForm').addEventListener('submit', async function(e) {
     e.preventDefault();
     
     // Get form data
     const formData = new FormData(this);
-    const name = this.querySelector('input[name="name"]').value;
-    const phone = this.querySelector('input[name="phone"]').value;
-    const attendance = this.querySelector('select[name="attendance"]').value;
-    const guests = this.querySelector('input[name="guests"]')?.value || '1';
-    const food = this.querySelector('select[name="food"]')?.value || '';
-    const hotelHelp = this.querySelector('select[name="hotel_help"]')?.value || 'no';
-    const drinks = this.querySelector('select[name="drinks"]')?.value || '';
-    const message = this.querySelector('textarea[name="message"]')?.value || '';
+    const name = this.querySelector('input[name="Имя"]').value;
+    const phone = this.querySelector('input[name="Телефон"]').value;
+    const attendance = this.querySelector('select[name="Присутствие"]').value;
     
     // Basic validation
     if (!name || !phone || !attendance) {
@@ -147,10 +142,10 @@ document.getElementById('rsvpForm').addEventListener('submit', async function(e)
         return;
     }
     
-    // Phone validation (basic check for Russian phone format)
-    const phoneRegex = /^[\+]?[0-9\s\-\(\)]{10,20}$/;
-    if (!phoneRegex.test(phone)) {
-        alert('Пожалуйста, введите корректный номер телефона');
+    // Phone validation - accept any format with at least 10 digits
+    const phoneDigits = phone.replace(/\D/g, '');
+    if (phoneDigits.length < 10 || phoneDigits.length > 15) {
+        alert('Пожалуйста, введите корректный номер телефона (10-15 цифр)');
         return;
     }
     
@@ -162,27 +157,9 @@ document.getElementById('rsvpForm').addEventListener('submit', async function(e)
         loadingModal.querySelector('div').classList.add('scale-100');
     }, 10);
     
-    // Prepare message for Telegram
-    const telegramMessage = `
-💌 *Новый RSVP ответ*
-
-👤 *Имя:* ${name}
-📱 *Телефон:* ${phone}
-✅ *Присутствие:* ${attendance === 'yes' ? 'Приду' : 'Не смогу'}
-👥 *Гостей:* ${guests}
-🍽️ *Еда:* ${food === 'meat' ? 'Мясо' : food === 'fish' ? 'Рыба' : food === 'veg' ? 'Вегетарианское' : 'Не указано'}
-🏨 *Помощь с отелем:* ${hotelHelp === 'consultation' ? 'Нужна консультация' : 'Нет'}
-🍷 *Напитки:* ${drinks === 'wine' ? 'Вино' : drinks === 'strong' ? 'Крепкий алкоголь' : drinks === 'both' ? 'Вино и крепкий алкоголь' : drinks === 'nonalcoholic' ? 'Безалкогольные' : 'Не указано'}
-💬 *Пожелания:* ${message || 'Нет'}
-
-⏰ *Время:* ${new Date().toLocaleString('ru-RU')}
-    `.trim();
-    
     try {
-        // Send to Telegram Bot API
-        // Note: In production, you should use a backend server to hide the bot token
-        // For now, we'll simulate the API call
-        await sendToTelegram(telegramMessage);
+        // Send to Formspree
+        await sendToEmail(formData);
         
         // Hide loading modal after 1.5 seconds
         setTimeout(() => {
@@ -193,43 +170,148 @@ document.getElementById('rsvpForm').addEventListener('submit', async function(e)
         }, 1500);
         
     } catch (error) {
-        console.error('Error sending to Telegram:', error);
+        console.error('Error sending email:', error);
         loadingModal.classList.add('hidden');
         alert('Произошла ошибка при отправке. Пожалуйста, попробуйте еще раз.');
     }
     
     this.reset();
+    // Hide guest names section after reset
+    document.getElementById('guestNamesSection').classList.add('hidden');
+    document.getElementById('guestNamesContainer').innerHTML = '';
 });
 
-// Function to send message to Telegram
-async function sendToTelegram(message) {
-    // TODO: Replace with your actual bot token and chat ID
-    // IMPORTANT: For production, use a backend server to protect your bot token
-    const BOT_TOKEN = 'YOUR_BOT_TOKEN'; // Replace with your bot token
-    const CHAT_ID = 'YOUR_CHAT_ID'; // Replace with your chat ID
+// Dynamic Guest Names Fields
+const guestCountSelect = document.getElementById('guestCount');
+if (guestCountSelect) {
+    guestCountSelect.addEventListener('change', function() {
+        const count = parseInt(this.value);
+        const guestNamesSection = document.getElementById('guestNamesSection');
+        const guestNamesContainer = document.getElementById('guestNamesContainer');
+        
+        if (count > 1) {
+            guestNamesSection.classList.remove('hidden');
+            guestNamesContainer.innerHTML = '';
+            
+            for (let i = 1; i < count; i++) {
+                const inputDiv = document.createElement('div');
+                inputDiv.innerHTML = `
+                    <input type="text" name="Имя гостя ${i}" class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-candle placeholder-candle/30 focus:outline-none focus:border-gold transition-colors" placeholder="Имя гостя ${i}">
+                `;
+                guestNamesContainer.appendChild(inputDiv);
+            }
+        } else {
+            guestNamesSection.classList.add('hidden');
+            guestNamesContainer.innerHTML = '';
+        }
+    });
+}
+
+// Phone Input Mask
+const phoneInput = document.querySelector('input[name="Телефон"]');
+if (phoneInput) {
+    phoneInput.setAttribute('placeholder', '+7(___)___-__-__');
+    phoneInput.setAttribute('maxlength', '18');
+    phoneInput.value = '+7'; // Set default value
     
-    // For demo purposes, we'll just simulate a delay
-    // In production, uncomment the fetch code below:
-    /*
-    const response = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+    phoneInput.addEventListener('input', function(e) {
+        let value = e.target.value.replace(/\D/g, '');
+        
+        // If starts with 8, replace with 7
+        if (value.startsWith('8')) {
+            value = '7' + value.slice(1);
+        }
+        
+        // If doesn't start with 7, add it
+        if (!value.startsWith('7') && value.length > 0) {
+            value = '7' + value;
+        }
+        
+        // Ensure we always have at least 7
+        if (value.length === 0) {
+            value = '7';
+        }
+        
+        let formattedValue = '';
+        
+        if (value.length > 0) {
+            formattedValue = '+7';
+        }
+        
+        if (value.length > 1) {
+            formattedValue += '(' + value.substring(1, 4);
+        }
+        
+        if (value.length >= 4) {
+            formattedValue += ')' + value.substring(4, 7);
+        }
+        
+        if (value.length >= 7) {
+            formattedValue += '-' + value.substring(7, 9);
+        }
+        
+        if (value.length >= 9) {
+            formattedValue += '-' + value.substring(9, 11);
+        }
+        
+        e.target.value = formattedValue;
+    });
+    
+    // Handle backspace - allow deleting digits but keep format
+    phoneInput.addEventListener('keydown', function(e) {
+        if (e.key === 'Backspace') {
+            const currentValue = this.value;
+            
+            // Don't allow deleting +7
+            if (currentValue.length <= 3) {
+                e.preventDefault();
+                return;
+            }
+            
+            // Get cursor position
+            const cursorPos = this.selectionStart;
+            
+            // If trying to delete a formatting character, move cursor back and delete the digit before it
+            const charToDelete = currentValue[cursorPos - 1];
+            if (['(', ')', '-'].includes(charToDelete)) {
+                e.preventDefault();
+                // Move cursor back and remove the previous digit
+                const newValue = currentValue.slice(0, cursorPos - 2) + currentValue.slice(cursorPos);
+                this.value = newValue;
+                this.setSelectionRange(cursorPos - 2, cursorPos - 2);
+                
+                // Trigger input event to reformat
+                this.dispatchEvent(new Event('input'));
+            }
+        }
+    });
+    
+    // Prevent removing +7
+    phoneInput.addEventListener('blur', function(e) {
+        if (e.target.value === '' || e.target.value === '+') {
+            e.target.value = '+7';
+        }
+    });
+}
+
+// Function to send form data to email via Formspree
+async function sendToEmail(formData) {
+    const FORMSPREE_URL = 'https://formspree.io/f/mwvygqjr';
+    
+    const response = await fetch(FORMSPREE_URL, {
         method: 'POST',
+        body: formData,
         headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-            chat_id: CHAT_ID,
-            text: message,
-            parse_mode: 'Markdown'
-        })
+            'Accept': 'application/json'
+        }
     });
     
     if (!response.ok) {
-        throw new Error('Failed to send message to Telegram');
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(`Formspree error: ${response.status} - ${JSON.stringify(errorData)}`);
     }
-    */
     
-    // Simulate network delay
-    return new Promise(resolve => setTimeout(resolve, 1500));
+    return response.json();
 }
 
 // Function to show success modal with personalized message

@@ -3,7 +3,7 @@ dist
 .DS_Store
 *.log
 wedding-website/
-текст.md
+текст.txt
 
 # Images folder is NOT ignored - add your photos here!
 # images/*.jpg

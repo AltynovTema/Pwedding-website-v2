@@ -358,6 +358,8 @@
             muted 
             loop 
             playsinline
+            webkit-playsinline
+            x5-playsinline
             class="w-full h-full object-cover"
             style="display: block; max-height: 300px; width: 100%;">
             <source src="/Pwedding-website-v2/images/queens-lake.mp4" type="video/mp4">
@@ -591,22 +593,25 @@
             </div>
 
             <form id="rsvpForm" class="bg-white/10 backdrop-blur-md p-8 rounded-xl shadow-2xl border border-white/20 fade-in">
+                <!-- Hidden fields for Formspree configuration -->
+                <input type="hidden" name="_subject" value="💌 Новая заявка RSVP">
+                <input type="hidden" name="_template" value="table">
+                
                 <p class="text-candle/60 text-sm mb-4 italic">* - отмечены обязательные поля для заполнения</p>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                     <div>
                         <label class="block text-sm font-medium mb-2 text-candle/80">Имя и Фамилия *</label>
-                        <input type="text" name="name" required class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-candle placeholder-candle/30 focus:outline-none focus:border-gold transition-colors" placeholder="Иван Иванов">
+                        <input type="text" name="Имя" required class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-candle placeholder-candle/30 focus:outline-none focus:border-gold transition-colors" placeholder="Иван Иванов">
                     </div>
                     <div>
                         <label class="block text-sm font-medium mb-2 text-candle/80">Телефон *</label>
-                        <input type="tel" name="phone" required class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-candle placeholder-candle/30 focus:outline-none focus:border-gold transition-colors" placeholder="+7 (999) 999-99-99">
+                        <input type="tel" name="Телефон" required class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-candle placeholder-candle/30 focus:outline-none focus:border-gold transition-colors" placeholder="+7 (999) 999-99-99">
                     </div>
                 </div>
 
                 <div class="mb-6">
                     <label class="block text-sm font-medium mb-2 text-candle/80">Сможете ли вы присутствовать? *</label>
-                    <select name="attendance" required class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-candle focus:outline-none focus:border-gold transition-colors appearance-none">
-                        <option value="" class="bg-juniper">Выберите ответ</option>
+                    <select name="Присутствие" required class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-candle focus:outline-none focus:border-gold transition-colors appearance-none">
                         <option value="yes" class="bg-juniper">С удовольствием приду</option>
                         <option value="no" class="bg-juniper">К сожалению, не смогу</option>
                     </select>
@@ -615,11 +620,17 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                     <div>
                         <label class="block text-sm font-medium mb-2 text-candle/80">Количество гостей</label>
-                        <input type="number" name="guests" min="1" max="5" value="1" class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-candle focus:outline-none focus:border-gold transition-colors">
+                        <select name="Количество гостей" id="guestCount" class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-candle focus:outline-none focus:border-gold transition-colors appearance-none">
+                            <option value="1" class="bg-juniper">Только я</option>
+                            <option value="2" class="bg-juniper">Я + 1 гость</option>
+                            <option value="3" class="bg-juniper">Я + 2 гостя</option>
+                            <option value="4" class="bg-juniper">Я + 3 гостя</option>
+                            <option value="5" class="bg-juniper">Я + 4 гостя</option>
+                        </select>
                     </div>
                     <div>
                         <label class="block text-sm font-medium mb-2 text-candle/80">Предпочтения в еде</label>
-                        <select name="food" class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-candle focus:outline-none focus:border-gold transition-colors appearance-none">
+                        <select name="Еда" class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-candle focus:outline-none focus:border-gold transition-colors appearance-none">
                             <option value="meat" class="bg-juniper">Мясо</option>
                             <option value="fish" class="bg-juniper">Рыба</option>
                             <option value="veg" class="bg-juniper">Вегетарианское</option>
@@ -627,9 +638,17 @@
                     </div>
                 </div>
 
+                <!-- Guest Names Section (hidden by default) -->
+                <div id="guestNamesSection" class="mb-6 hidden">
+                    <label class="block text-sm font-medium mb-4 text-candle/80">Имена гостей:</label>
+                    <div id="guestNamesContainer" class="space-y-3">
+                        <!-- Dynamic guest name fields will be inserted here -->
+                    </div>
+                </div>
+
                 <div class="mb-6">
                     <label class="block text-sm font-medium mb-2 text-candle/80">Нужна ли вам помощь с бронированием отеля?</label>
-                    <select name="hotel_help" class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-candle focus:outline-none focus:border-gold transition-colors appearance-none">
+                    <select name="Помощь с отелем" class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-candle focus:outline-none focus:border-gold transition-colors appearance-none">
                         <option value="no" class="bg-juniper">Нет, я забронирую самостоятельно</option>
                         <option value="consultation" class="bg-juniper">Да, нужна консультация по выбору</option>
                     </select>
@@ -637,7 +656,7 @@
 
                 <div class="mb-6">
                     <label class="block text-sm font-medium mb-2 text-candle/80">Предпочтения по напиткам</label>
-                    <select name="drinks" class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-candle focus:outline-none focus:border-gold transition-colors appearance-none">
+                    <select name="Напитки" class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-candle focus:outline-none focus:border-gold transition-colors appearance-none">
                         <option value="" class="bg-juniper">Выберите предпочтения</option>
                         <option value="wine" class="bg-juniper">🍷 Вино</option>
                         <option value="strong" class="bg-juniper">🥃 Крепкий алкоголь</option>
@@ -649,7 +668,7 @@
 
                 <div class="mb-8">
                     <label class="block text-sm font-medium mb-2 text-candle/80">Пожелания / Аллергии</label>
-                    <textarea name="message" rows="3" class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-candle placeholder-candle/30 focus:outline-none focus:border-gold transition-colors" placeholder="Расскажите нам..."></textarea>
+                    <textarea name="Пожелания" rows="3" class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-candle placeholder-candle/30 focus:outline-none focus:border-gold transition-colors" placeholder="Расскажите нам..."></textarea>
                 </div>
 
                 <button type="submit" class="w-full bg-coral hover:bg-coral/80 text-candle font-bold py-4 rounded-lg transition-all transform hover:scale-[1.02] shadow-lg">
