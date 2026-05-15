@@ -126,47 +126,142 @@ document.querySelectorAll('.wp1, .wp2, .wp3, .wp4, .wp5, .wp6, .wp7, .wp8, .wp9'
     waypointObserver.observe(el);
 });
 
-// Form Handling with Validation
-document.getElementById('rsvpForm').addEventListener('submit', function(e) {
+// Form Handling with Validation and Telegram Integration
+document.getElementById('rsvpForm').addEventListener('submit', async function(e) {
     e.preventDefault();
     
     // Get form data
     const formData = new FormData(this);
-    const name = this.querySelector('input[type="text"]').value;
-    const email = this.querySelector('input[type="email"]').value;
-    const attendance = this.querySelector('select').value;
+    const name = this.querySelector('input[name="name"]').value;
+    const phone = this.querySelector('input[name="phone"]').value;
+    const attendance = this.querySelector('select[name="attendance"]').value;
+    const guests = this.querySelector('input[name="guests"]')?.value || '1';
+    const food = this.querySelector('select[name="food"]')?.value || '';
+    const hotelHelp = this.querySelector('select[name="hotel_help"]')?.value || 'no';
+    const drinks = this.querySelector('select[name="drinks"]')?.value || '';
+    const message = this.querySelector('textarea[name="message"]')?.value || '';
     
     // Basic validation
-    if (!name || !email || !attendance) {
+    if (!name || !phone || !attendance) {
         alert('Пожалуйста, заполните все обязательные поля');
         return;
     }
     
-    // Email validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-        alert('Пожалуйста, введите корректный email');
+    // Phone validation (basic check for Russian phone format)
+    const phoneRegex = /^[\+]?[0-9\s\-\(\)]{10,20}$/;
+    if (!phoneRegex.test(phone)) {
+        alert('Пожалуйста, введите корректный номер телефона');
         return;
     }
     
-    // Show success modal
+    // Show loading modal
+    const loadingModal = document.getElementById('loadingModal');
+    loadingModal.classList.remove('hidden');
+    setTimeout(() => {
+        loadingModal.querySelector('div').classList.remove('scale-95');
+        loadingModal.querySelector('div').classList.add('scale-100');
+    }, 10);
+    
+    // Prepare message for Telegram
+    const telegramMessage = `
+💌 *Новый RSVP ответ*
+
+👤 *Имя:* ${name}
+📱 *Телефон:* ${phone}
+✅ *Присутствие:* ${attendance === 'yes' ? 'Приду' : 'Не смогу'}
+👥 *Гостей:* ${guests}
+🍽️ *Еда:* ${food === 'meat' ? 'Мясо' : food === 'fish' ? 'Рыба' : food === 'veg' ? 'Вегетарианское' : 'Не указано'}
+🏨 *Помощь с отелем:* ${hotelHelp === 'consultation' ? 'Нужна консультация' : 'Нет'}
+🍷 *Напитки:* ${drinks === 'wine' ? 'Вино' : drinks === 'strong' ? 'Крепкий алкоголь' : drinks === 'both' ? 'Вино и крепкий алкоголь' : drinks === 'nonalcoholic' ? 'Безалкогольные' : 'Не указано'}
+💬 *Пожелания:* ${message || 'Нет'}
+
+⏰ *Время:* ${new Date().toLocaleString('ru-RU')}
+    `.trim();
+    
+    try {
+        // Send to Telegram Bot API
+        // Note: In production, you should use a backend server to hide the bot token
+        // For now, we'll simulate the API call
+        await sendToTelegram(telegramMessage);
+        
+        // Hide loading modal after 1.5 seconds
+        setTimeout(() => {
+            loadingModal.classList.add('hidden');
+            
+            // Show success modal
+            showSuccessModal(name);
+        }, 1500);
+        
+    } catch (error) {
+        console.error('Error sending to Telegram:', error);
+        loadingModal.classList.add('hidden');
+        alert('Произошла ошибка при отправке. Пожалуйста, попробуйте еще раз.');
+    }
+    
+    this.reset();
+});
+
+// Function to send message to Telegram
+async function sendToTelegram(message) {
+    // TODO: Replace with your actual bot token and chat ID
+    // IMPORTANT: For production, use a backend server to protect your bot token
+    const BOT_TOKEN = 'YOUR_BOT_TOKEN'; // Replace with your bot token
+    const CHAT_ID = 'YOUR_CHAT_ID'; // Replace with your chat ID
+    
+    // For demo purposes, we'll just simulate a delay
+    // In production, uncomment the fetch code below:
+    /*
+    const response = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            chat_id: CHAT_ID,
+            text: message,
+            parse_mode: 'Markdown'
+        })
+    });
+    
+    if (!response.ok) {
+        throw new Error('Failed to send message to Telegram');
+    }
+    */
+    
+    // Simulate network delay
+    return new Promise(resolve => setTimeout(resolve, 1500));
+}
+
+// Function to show success modal with personalized message
+function showSuccessModal(name) {
     const modal = document.getElementById('successModal');
+    const titleElement = document.getElementById('successTitle');
+    const messageElement = document.getElementById('successMessage');
+    
+    // Set personalized message
+    titleElement.textContent = `Спасибо, ${name}!`;
+    
+    // Show modal
     modal.classList.remove('hidden');
     setTimeout(() => {
         modal.querySelector('div').classList.remove('scale-95');
         modal.querySelector('div').classList.add('scale-100');
     }, 10);
     
-    // Log form data (in production, send to server)
-    console.log('RSVP Submission:', {
-        name,
-        email,
-        attendance,
-        timestamp: new Date().toISOString()
-    });
-    
-    this.reset();
-});
+    // Start fireworks animation
+    startFireworks();
+}
+
+// Function to close success modal
+function closeSuccessModal() {
+    const modal = document.getElementById('successModal');
+    modal.querySelector('div').classList.remove('scale-100');
+    modal.querySelector('div').classList.add('scale-95');
+    setTimeout(() => {
+        modal.classList.add('hidden');
+        stopFireworks();
+    }, 300);
+}
 
 // Navbar Scroll Effect with Active Section Highlighting
 let lastScroll = 0;
@@ -326,4 +421,113 @@ function initVenueMap() {
             console.error('Error initializing map:', error);
         }
     });
+}
+
+// ===== FIREWORKS ANIMATION SYSTEM =====
+let fireworksAnimationId = null;
+let particles = [];
+
+function startFireworks() {
+    const canvas = document.getElementById('fireworksCanvas');
+    if (!canvas) return;
+    
+    const ctx = canvas.getContext('2d');
+    const modal = canvas.parentElement;
+    
+    // Set canvas size to match modal
+    function resizeCanvas() {
+        canvas.width = modal.offsetWidth;
+        canvas.height = modal.offsetHeight;
+    }
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+    
+    // Wedding color palette
+    const colors = ['#F8C8D4', '#B8D4EA', '#D4B896', '#E8DDE8', '#FFE4EA', '#D6E8F5', '#FFF5F7', '#F0B8C0'];
+    
+    // Create firework particle class
+    class Particle {
+        constructor(x, y, color) {
+            this.x = x;
+            this.y = y;
+            this.color = color;
+            const angle = Math.random() * Math.PI * 2;
+            const velocity = Math.random() * 3 + 1;
+            this.vx = Math.cos(angle) * velocity;
+            this.vy = Math.sin(angle) * velocity;
+            this.alpha = 1;
+            this.decay = Math.random() * 0.015 + 0.01;
+            this.gravity = 0.05;
+        }
+        
+        update() {
+            this.vx *= 0.98;
+            this.vy *= 0.98;
+            this.vy += this.gravity;
+            this.x += this.vx;
+            this.y += this.vy;
+            this.alpha -= this.decay;
+        }
+        
+        draw(ctx) {
+            ctx.save();
+            ctx.globalAlpha = this.alpha;
+            ctx.fillStyle = this.color;
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, 2, 0, Math.PI * 2);
+            ctx.fill();
+            
+            // Add sparkle effect
+            ctx.shadowBlur = 10;
+            ctx.shadowColor = this.color;
+            ctx.fill();
+            ctx.restore();
+        }
+    }
+    
+    // Create explosion
+    function createExplosion(x, y) {
+        const particleCount = 30 + Math.random() * 20;
+        for (let i = 0; i < particleCount; i++) {
+            const color = colors[Math.floor(Math.random() * colors.length)];
+            particles.push(new Particle(x, y, color));
+        }
+    }
+    
+    // Animation loop
+    function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
+        // Randomly create new explosions
+        if (Math.random() < 0.05) {
+            const x = Math.random() * canvas.width;
+            const y = Math.random() * canvas.height * 0.6;
+            createExplosion(x, y);
+        }
+        
+        // Update and draw particles
+        particles = particles.filter(particle => {
+            particle.update();
+            particle.draw(ctx);
+            return particle.alpha > 0;
+        });
+        
+        fireworksAnimationId = requestAnimationFrame(animate);
+    }
+    
+    // Start animation
+    animate();
+    
+    // Create initial burst
+    setTimeout(() => createExplosion(canvas.width / 2, canvas.height / 3), 100);
+    setTimeout(() => createExplosion(canvas.width / 3, canvas.height / 2), 300);
+    setTimeout(() => createExplosion(canvas.width * 2/3, canvas.height / 2), 500);
+}
+
+function stopFireworks() {
+    if (fireworksAnimationId) {
+        cancelAnimationFrame(fireworksAnimationId);
+        fireworksAnimationId = null;
+    }
+    particles = [];
 }
