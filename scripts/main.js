@@ -17,19 +17,21 @@ function toggleFaq(button) {
     const content = button.nextElementSibling;
     const arrow = button.querySelector('svg');
     
-    // Toggle current FAQ
-    content.classList.toggle('hidden');
-    arrow.classList.toggle('rotate-180');
+    // Check if this FAQ is currently open
+    const isOpen = !content.classList.contains('hidden');
     
-    // Optional: Close other FAQs
-    const allFaqs = document.querySelectorAll('#faq .hidden, #faq div:not(.hidden)');
-    allFaqs.forEach(faq => {
-        if (faq !== content && !faq.classList.contains('hidden')) {
-            faq.classList.add('hidden');
-            const otherArrow = faq.previousElementSibling.querySelector('svg');
-            if (otherArrow) otherArrow.classList.remove('rotate-180');
-        }
-    });
+    // Close all FAQs first
+    const allContents = document.querySelectorAll('#faq .bg-candle > div:not(button)');
+    const allArrows = document.querySelectorAll('#faq .bg-candle button svg');
+    
+    allContents.forEach(c => c.classList.add('hidden'));
+    allArrows.forEach(a => a.classList.remove('rotate-180'));
+    
+    // If it was closed, open it
+    if (!isOpen) {
+        content.classList.remove('hidden');
+        arrow.classList.add('rotate-180');
+    }
 }
 
 // Back to Top Button

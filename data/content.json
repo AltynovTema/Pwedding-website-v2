@@ -3,7 +3,7 @@
     "groom": "Артём",
     "bride": "Алёна",
     "initials": "А & А",
-    "hashtag": "#ArtemAlyona2026"
+    "hashtag": "#ArtemAndAlyona"
   },
   "wedding": {
     "date": "2026-08-09",
@@ -58,13 +58,17 @@
   "contacts": {
     "groom": {
       "name": "Артём",
-      "phone": "+7 (900) 123-45-67",
-      "phoneLink": "tel:+79001234567"
+      "phone": "+7 (953) 354-41-90",
+      "phoneLink": "tel:+79533544190",
+      "telegram": "@nomad_in_the_ocean",
+      "telegramLink": "https://t.me/nomad_in_the_ocean"
     },
     "bride": {
       "name": "Алёна",
-      "phone": "+7 (900) 123-45-68",
-      "phoneLink": "tel:+79001234568"
+      "phone": "+7 (925) 155-01-27",
+      "phoneLink": "tel:+79251550127",
+      "telegram": "@AlyonaPa",
+      "telegramLink": "https://t.me/AlyonaPa"
     }
   },
   "story": [
