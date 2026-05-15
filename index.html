@@ -510,10 +510,11 @@
 
                         <!-- Hotels Near Restaurant -->
                         <div>
-                            <h4 class="font-serif text-juniper text-lg mb-3 flex items-center gap-2">
-                                <span class="text-coral">🎯</span> Рядом с рестораном (≈15 минут на машине)
-                            </h4>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                            <button onclick="toggleHotelList('hotels-near')" class="w-full text-left font-serif text-juniper text-lg mb-3 flex items-center justify-between gap-2 hover:text-coral transition-colors">
+                                <span><span class="text-coral">🎯</span> Рядом с рестораном (≈15 минут на машине)</span>
+                                <svg id="arrow-hotels-near" class="w-6 h-6 text-coral transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </button>
+                            <div id="hotels-near" class="hidden grid grid-cols-1 md:grid-cols-2 gap-3 mb-4">
                                 <a href="https://sovahotels.ru/" target="_blank" rel="noopener noreferrer" class="block bg-juniper/5 hover:bg-juniper/10 p-4 rounded-lg transition-all border border-juniper/20 hover:border-coral/50 shadow-sm hover:shadow-md">
                                     <span class="font-medium text-juniper text-base">🏨 Sova Hotel</span>
                                 </a>
@@ -549,10 +550,11 @@
 
                         <!-- Hotels in Moscow -->
                         <div>
-                            <h4 class="font-serif text-juniper text-lg mb-3 flex items-center gap-2">
-                                <span class="text-coral">🏙️</span> В Москве (для тех, кто хочет остаться в городе)
-                            </h4>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                            <button onclick="toggleHotelList('hotels-moscow')" class="w-full text-left font-serif text-juniper text-lg mb-3 flex items-center justify-between gap-2 hover:text-coral transition-colors">
+                                <span><span class="text-coral">🏙️</span> В Москве (для тех, кто хочет остаться в городе)</span>
+                                <svg id="arrow-hotels-moscow" class="w-6 h-6 text-coral transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </button>
+                            <div id="hotels-moscow" class="hidden grid grid-cols-1 md:grid-cols-2 gap-3 mb-4">
                                 <a href="https://yandex.ru/maps/-/CPgW42Zm" target="_blank" rel="noopener noreferrer" class="block bg-juniper/5 hover:bg-juniper/10 p-4 rounded-lg transition-all border border-juniper/20 hover:border-coral/50 shadow-sm hover:shadow-md">
                                     <span class="font-medium text-juniper text-base">🏨 Отель в Москве #1</span>
                                 </a>
@@ -595,7 +597,6 @@
             <form id="rsvpForm" class="bg-white/10 backdrop-blur-md p-8 rounded-xl shadow-2xl border border-white/20 fade-in">
                 <!-- Hidden fields for Formspree configuration -->
                 <input type="hidden" name="_subject" value="💌 Новая заявка RSVP">
-                <input type="hidden" name="_template" value="table">
                 
                 <p class="text-candle/60 text-sm mb-4 italic">* - отмечены обязательные поля для заполнения</p>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">

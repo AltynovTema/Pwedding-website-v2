@@ -345,6 +345,20 @@ function closeSuccessModal() {
     }, 300);
 }
 
+// Toggle Hotel Lists
+function toggleHotelList(hotelListId) {
+    const list = document.getElementById(hotelListId);
+    const arrow = document.getElementById('arrow-' + hotelListId);
+    
+    if (list.classList.contains('hidden')) {
+        list.classList.remove('hidden');
+        arrow.classList.add('rotate-180');
+    } else {
+        list.classList.add('hidden');
+        arrow.classList.remove('rotate-180');
+    }
+}
+
 // Navbar Scroll Effect with Active Section Highlighting
 let lastScroll = 0;
 const sections = document.querySelectorAll('section[id]');
