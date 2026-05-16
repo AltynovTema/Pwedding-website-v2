@@ -2,8 +2,8 @@ node_modules
 dist
 .DS_Store
 *.log
+.idea/
 wedding-website/
-текст.txt
 
 # Images folder is NOT ignored - add your photos here!
 # media/*.jpg
