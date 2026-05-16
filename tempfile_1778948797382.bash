@@ -1,4 +1,4 @@
 # Внести изменения, затем:
 git add .
-git commit -m "закончил Всю Визуалку"
+git commit -m "Добавил звук и поправил папку с медиа"
 git push origin develop

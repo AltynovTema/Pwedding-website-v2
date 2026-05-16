@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Wedding Website Image Setup Script
-# This script helps you set up your images
+# This script helps you set up your media
 
 echo "🎉 Wedding Website Image Setup"
 echo "================================"

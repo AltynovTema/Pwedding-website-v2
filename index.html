@@ -57,6 +57,17 @@
         </svg>
     </button>
 
+    <!-- Music Toggle Button -->
+    <button id="musicToggle" class="fixed bottom-8 left-8 bg-coral text-candle w-12 h-12 rounded-full shadow-lg hover:bg-coral/80 transition-all transform hover:scale-110 z-40 flex items-center justify-center" aria-label="Включить/выключить музыку">
+        <svg id="musicIconOn" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"></path>
+        </svg>
+        <svg id="musicIconOff" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" clip-rule="evenodd" fill-rule="evenodd"></path>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2"></path>
+        </svg>
+    </button>
+
     <!-- Navigation -->
     <nav class="fixed w-full z-50 bg-juniper text-candle transition-all duration-300" id="navbar">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -150,7 +161,7 @@
             
             <div class="row" style="justify-content: center;">
                 <div class="col-md-3 hidden-sm hidden-xs wp1">
-                    <img src="/Pwedding-website-v2/images/story-1.jpg" alt="Первая встреча" class="w-full h-full object-cover rounded-lg shadow-xl">
+                    <img src="/Pwedding-website-v2/media/story-1.jpg" alt="Первая встреча" class="w-full h-full object-cover rounded-lg shadow-xl">
                 </div>
                 <div class="col-md-6" style="text-align: center;">
                     <p class="text-lg leading-relaxed">
@@ -165,17 +176,17 @@
                     </p>
                 </div>
                 <div class="col-md-3 hidden-sm hidden-xs wp2">
-                    <img src="/Pwedding-website-v2/images/story-2.jpg" alt="Предложение" class="w-full h-full object-cover rounded-lg shadow-xl">
+                    <img src="/Pwedding-website-v2/media/story-2.jpg" alt="Предложение" class="w-full h-full object-cover rounded-lg shadow-xl">
                 </div>
             </div>
             
             <!-- Mobile version -->
             <div class="row" style="margin-top: 40px; padding-left: 10px; padding-right: 10px;">
                 <div class="col-sm-5 col-xs-6 hidden-md hidden-lg wp8">
-                    <img src="/Pwedding-website-v2/images/story-1.jpg" alt="Первая встреча" class="w-full h-96 object-cover rounded-lg shadow-xl">
+                    <img src="/Pwedding-website-v2/media/story-1.jpg" alt="Первая встреча" class="w-full h-96 object-cover rounded-lg shadow-xl">
                 </div>
                 <div class="col-sm-5 col-sm-offset-2 col-xs-6 hidden-md hidden-lg wp9">
-                    <img src="/Pwedding-website-v2/images/story-2.jpg" alt="Предложение" class="w-full h-96 object-cover rounded-lg shadow-xl">
+                    <img src="/Pwedding-website-v2/media/story-2.jpg" alt="Предложение" class="w-full h-96 object-cover rounded-lg shadow-xl">
                 </div>
             </div>
         </div>
@@ -318,7 +329,7 @@
                     <div class="bg-candle p-6 rounded-2xl shadow-2xl h-full flex flex-col">
                         <!-- Phone Image Placeholder (3:4 aspect ratio) -->
                         <div class="flex-shrink-0 mb-4" style="flex: 1; min-height: 0;">
-                            <img src="/Pwedding-website-v2/images/iphone_instagram.jpg" alt="Instagram" class="w-full h-full object-cover rounded-lg shadow-lg" style="aspect-ratio: 5/6;">
+                            <img src="/Pwedding-website-v2/media/iphone_instagram.jpg" alt="Instagram" class="w-full h-full object-cover rounded-lg shadow-lg" style="aspect-ratio: 5/6;">
                         </div>
                         
                         <!-- Instagram & Telegram Info - Pushed to bottom -->
@@ -402,7 +413,7 @@
             x5-playsinline
             class="w-full h-full object-cover"
             style="display: block; max-height: 300px; width: 100%;">
-            <source src="/Pwedding-website-v2/images/queens-lake.mp4" type="video/mp4">
+            <source src="/Pwedding-website-v2/media/queens-lake.mp4" type="video/mp4">
         </video>
     </section>
 
@@ -816,6 +827,12 @@
     </div>
 
     <script src="./scripts/main.js"></script>
+    
+    <!-- Background Music -->
+    <audio id="backgroundMusic" loop preload="auto">
+        <source src="/Pwedding-website-v2/media/song.mp3" type="audio/mpeg">
+        Ваш браузер не поддерживает аудио элемент.
+    </audio>
     
     <!-- Particle Animation Script -->
     <script>

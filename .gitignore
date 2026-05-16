@@ -6,5 +6,5 @@ wedding-website/
 текст.txt
 
 # Images folder is NOT ignored - add your photos here!
-# images/*.jpg
-# images/*.png
+# media/*.jpg
+# media/*.png

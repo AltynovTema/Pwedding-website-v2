@@ -13,6 +13,9 @@ window.addEventListener('load', () => {
     
     // Initialize Gallery Carousel
     initGalleryCarousel();
+    
+    // Initialize Background Music
+    initBackgroundMusic();
 });
 
 // FAQ Toggle Function
@@ -642,18 +645,18 @@ function initGalleryCarousel() {
     
     // Photo paths
     const photos = [
-        '/Pwedding-website-v2/images/photos/photo1.jpg',
-        '/Pwedding-website-v2/images/photos/photo2.jpg',
-        '/Pwedding-website-v2/images/photos/photo3.jpg',
-        '/Pwedding-website-v2/images/photos/photo4.jpg',
-        '/Pwedding-website-v2/images/photos/photo5.jpg',
-        '/Pwedding-website-v2/images/photos/photo6.jpg',
-        '/Pwedding-website-v2/images/photos/photo7.jpg',
-        '/Pwedding-website-v2/images/photos/photo8.jpg',
-        '/Pwedding-website-v2/images/photos/photo9.jpg',
-        '/Pwedding-website-v2/images/photos/photo10.jpg'
+        '/Pwedding-website-v2/media/photos/photo1.jpg',
+        '/Pwedding-website-v2/media/photos/photo2.jpg',
+        '/Pwedding-website-v2/media/photos/photo3.jpg',
+        '/Pwedding-website-v2/media/photos/photo4.jpg',
+        '/Pwedding-website-v2/media/photos/photo5.jpg',
+        '/Pwedding-website-v2/media/photos/photo6.jpg',
+        '/Pwedding-website-v2/media/photos/photo7.jpg',
+        '/Pwedding-website-v2/media/photos/photo8.jpg',
+        '/Pwedding-website-v2/media/photos/photo9.jpg',
+        '/Pwedding-website-v2/media/photos/photo10.jpg'
     ];
-    
+
     // Create slides - NO clones, just original photos
     photos.forEach((photoPath, index) => {
         const slide = document.createElement('div');
@@ -847,4 +850,76 @@ function initGalleryCarousel() {
     
     // Start auto-play
     startAutoPlay();
+}
+
+// ===== BACKGROUND MUSIC SYSTEM =====
+function initBackgroundMusic() {
+    const music = document.getElementById('backgroundMusic');
+    const toggleButton = document.getElementById('musicToggle');
+    const iconOn = document.getElementById('musicIconOn');
+    const iconOff = document.getElementById('musicIconOff');
+    
+    if (!music || !toggleButton) return;
+    
+    let isPlaying = false;
+    let userInteracted = false;
+    
+    // Set volume to 50% for background music
+    music.volume = 0.5;
+    
+    // Try to autoplay on page load
+    function attemptAutoplay() {
+        music.play().then(() => {
+            isPlaying = true;
+            updateIcon();
+        }).catch(error => {
+            console.log('Autoplay prevented:', error);
+            isPlaying = false;
+            updateIcon();
+        });
+    }
+    
+    // Update button icon based on state
+    function updateIcon() {
+        if (isPlaying) {
+            iconOn.classList.remove('hidden');
+            iconOff.classList.add('hidden');
+        } else {
+            iconOn.classList.add('hidden');
+            iconOff.classList.remove('hidden');
+        }
+    }
+    
+    // Toggle music on button click
+    toggleButton.addEventListener('click', () => {
+        userInteracted = true;
+        
+        if (isPlaying) {
+            music.pause();
+            isPlaying = false;
+        } else {
+            music.play().then(() => {
+                isPlaying = true;
+            }).catch(error => {
+                console.error('Error playing music:', error);
+            });
+        }
+        
+        updateIcon();
+    });
+    
+    // Attempt autoplay after a short delay
+    setTimeout(attemptAutoplay, 1500);
+    
+    // Also try on first user interaction (if not already playing)
+    const interactionHandler = () => {
+        if (!userInteracted && !isPlaying) {
+            attemptAutoplay();
+        }
+        userInteracted = true;
+    };
+    
+    document.addEventListener('click', interactionHandler, { once: true });
+    document.addEventListener('touchstart', interactionHandler, { once: true });
+    document.addEventListener('scroll', interactionHandler, { once: true });
 }

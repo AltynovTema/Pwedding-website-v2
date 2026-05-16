@@ -87,7 +87,7 @@ git commit -m "Update wedding date in content.json"
 Images are already tracked. Just commit normally:
 
 ```bash
-git add images/
+git add media/
 git commit -m "Add wedding photos"
 git push
 ```
@@ -111,8 +111,8 @@ git lfs track "*.png"
 git add .gitattributes
 git commit -m "Configure Git LFS for images"
 
-# Now add and commit images normally
-git add images/
+# Now add and commit media normally
+git add media/
 git commit -m "Add large wedding photos via LFS"
 git push
 ```
@@ -210,8 +210,8 @@ git push
 ### Scenario 1: Updated Photos
 
 ```bash
-# Replace photos in images/ folder
-git add images/
+# Replace photos in media/ folder
+git add media/
 git commit -m "Update wedding photos"
 git push
 ```
