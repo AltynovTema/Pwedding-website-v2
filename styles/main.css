@@ -506,3 +506,78 @@ a:focus {
         justify-content: center;
     }
 }
+
+/* ===== GALLERY CAROUSEL STYLES ===== */
+#gallery-carousel {
+    width: 100%;
+    will-change: transform;
+}
+
+.gallery-slide {
+    min-width: 100%;
+    padding: 0 8px;
+    box-sizing: border-box;
+}
+
+.gallery-slide img {
+    width: 100%;
+    height: auto;
+    max-height: 600px;
+    object-fit: contain;
+    border-radius: 1rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    background-color: #f9f9f9;
+    will-change: transform;
+}
+
+.gallery-slide img:hover {
+    transform: scale(1.02);
+}
+
+/* Desktop: Show multiple photos */
+@media (min-width: 1024px) {
+    .gallery-slide {
+        min-width: 33.333%;
+    }
+    
+    .gallery-slide img {
+        max-height: 500px;
+    }
+}
+
+/* Tablet: Show 2 photos */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .gallery-slide {
+        min-width: 50%;
+    }
+    
+    .gallery-slide img {
+        max-height: 550px;
+    }
+}
+
+/* Dots indicator */
+.gallery-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #d1d5db;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+}
+
+.gallery-dot.active {
+    background-color: #7BA3B8;
+    transform: scale(1.4);
+}
+
+.gallery-dot:hover {
+    background-color: #9BB5C4;
+}
+
+/* Pause on hover */
+#gallery-carousel:hover {
+    animation-play-state: paused;
+}

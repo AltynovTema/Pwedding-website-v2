@@ -10,6 +10,9 @@ window.addEventListener('load', () => {
     
     // Initialize Venue Map
     initVenueMap();
+    
+    // Initialize Gallery Carousel
+    initGalleryCarousel();
 });
 
 // FAQ Toggle Function
@@ -626,4 +629,222 @@ function stopFireworks() {
         fireworksAnimationId = null;
     }
     particles = [];
+}
+
+// ===== GALLERY CAROUSEL SYSTEM =====
+function initGalleryCarousel() {
+    const carousel = document.getElementById('gallery-carousel');
+    const prevButton = document.getElementById('gallery-prev');
+    const nextButton = document.getElementById('gallery-next');
+    const dotsContainer = document.getElementById('gallery-dots');
+    
+    if (!carousel) return;
+    
+    // Photo paths
+    const photos = [
+        '/Pwedding-website-v2/images/photos/photo1.jpg',
+        '/Pwedding-website-v2/images/photos/photo2.jpg',
+        '/Pwedding-website-v2/images/photos/photo3.jpg',
+        '/Pwedding-website-v2/images/photos/photo4.jpg',
+        '/Pwedding-website-v2/images/photos/photo5.jpg',
+        '/Pwedding-website-v2/images/photos/photo6.jpg',
+        '/Pwedding-website-v2/images/photos/photo7.jpg',
+        '/Pwedding-website-v2/images/photos/photo8.jpg',
+        '/Pwedding-website-v2/images/photos/photo9.jpg',
+        '/Pwedding-website-v2/images/photos/photo10.jpg'
+    ];
+    
+    // Create slides - NO clones, just original photos
+    photos.forEach((photoPath, index) => {
+        const slide = document.createElement('div');
+        slide.className = 'gallery-slide';
+        slide.innerHTML = `<img src="${photoPath}" alt="Фото ${index + 1}" loading="lazy">`;
+        carousel.appendChild(slide);
+    });
+    
+    // Get all slides
+    const slides = carousel.querySelectorAll('.gallery-slide');
+    const totalSlides = photos.length;
+    
+    // Determine how many slides to show based on screen width
+    function getSlidesToShow() {
+        if (window.innerWidth >= 1024) return 3;
+        if (window.innerWidth >= 768) return 2;
+        return 1;
+    }
+    
+    let currentIndex = 0; // Start at first photo (will be centered)
+    let slidesToShow = getSlidesToShow();
+    let autoPlayInterval;
+    
+    // Create dots (one for each photo)
+    for (let i = 0; i < totalSlides; i++) {
+        const dot = document.createElement('div');
+        dot.className = 'gallery-dot';
+        if (i === 0) dot.classList.add('active');
+        dot.addEventListener('click', () => goToSlide(i));
+        dotsContainer.appendChild(dot);
+    }
+    
+    const dots = dotsContainer.querySelectorAll('.gallery-dot');
+    
+    // Update carousel position - center the current photo
+    function updateCarousel() {
+        const slideWidth = 100 / slidesToShow;
+        
+        // Calculate offset to center the current photo
+        // For 3 photos: show [prev, current, next], so offset by 1 position
+        const centerOffset = Math.floor(slidesToShow / 2);
+        let offsetIndex = currentIndex - centerOffset;
+        
+        // Clamp to boundaries
+        const maxOffset = totalSlides - slidesToShow;
+        offsetIndex = Math.max(0, Math.min(offsetIndex, maxOffset));
+        
+        const offset = -(offsetIndex * slideWidth);
+        carousel.style.transform = `translateX(${offset}%)`;
+        
+        // Update dots - highlight current centered photo
+        dots.forEach((dot, index) => {
+            dot.classList.toggle('active', index === currentIndex);
+        });
+        
+        // Update button states
+        updateButtonStates();
+    }
+    
+    // Update button visibility based on position
+    function updateButtonStates() {
+        // Disable prev button at start
+        if (currentIndex <= 0) {
+            prevButton.style.opacity = '0.5';
+            prevButton.style.pointerEvents = 'none';
+        } else {
+            prevButton.style.opacity = '1';
+            prevButton.style.pointerEvents = 'auto';
+        }
+        
+        // Disable next button at end
+        if (currentIndex >= totalSlides - 1) {
+            nextButton.style.opacity = '0.5';
+            nextButton.style.pointerEvents = 'none';
+        } else {
+            nextButton.style.opacity = '1';
+            nextButton.style.pointerEvents = 'auto';
+        }
+    }
+    
+    // Go to specific slide
+    function goToSlide(index) {
+        currentIndex = index;
+        updateCarousel();
+        resetAutoPlay();
+    }
+    
+    // Next slide
+    function nextSlide() {
+        if (currentIndex < totalSlides - 1) {
+            currentIndex++;
+        } else {
+            // Rewind to beginning
+            currentIndex = 0;
+        }
+        updateCarousel();
+    }
+    
+    // Previous slide
+    function prevSlide() {
+        if (currentIndex > 0) {
+            currentIndex--;
+        } else {
+            // Go to end
+            currentIndex = totalSlides - 1;
+        }
+        updateCarousel();
+    }
+    
+    // Auto-play functionality
+    function startAutoPlay() {
+        autoPlayInterval = setInterval(nextSlide, 5000); // Change every 5 seconds
+    }
+    
+    function stopAutoPlay() {
+        clearInterval(autoPlayInterval);
+    }
+    
+    function resetAutoPlay() {
+        stopAutoPlay();
+        startAutoPlay();
+    }
+    
+    // Event listeners
+    nextButton.addEventListener('click', () => {
+        nextSlide();
+        resetAutoPlay();
+    });
+    
+    prevButton.addEventListener('click', () => {
+        prevSlide();
+        resetAutoPlay();
+    });
+    
+    // Pause on hover
+    carousel.addEventListener('mouseenter', stopAutoPlay);
+    carousel.addEventListener('mouseleave', startAutoPlay);
+    
+    // Handle window resize
+    let resizeTimeout;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+            const newSlidesToShow = getSlidesToShow();
+            if (newSlidesToShow !== slidesToShow) {
+                slidesToShow = newSlidesToShow;
+                currentIndex = 0; // Reset to first photo
+                updateCarousel();
+            }
+        }, 250);
+    });
+    
+    // Initialize position
+    updateCarousel();
+    
+    // Touch/swipe support for mobile
+    let touchStartX = 0;
+    let touchEndX = 0;
+    let touchStartTime = 0;
+    
+    carousel.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+        touchStartTime = Date.now();
+        stopAutoPlay();
+    }, { passive: true });
+    
+    carousel.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        const touchDuration = Date.now() - touchStartTime;
+        
+        // Only trigger swipe if it's a quick gesture (not a long press)
+        if (touchDuration < 300) {
+            handleSwipe();
+        }
+        startAutoPlay();
+    }, { passive: true });
+    
+    function handleSwipe() {
+        const swipeThreshold = 50;
+        const diff = touchStartX - touchEndX;
+        
+        if (Math.abs(diff) > swipeThreshold) {
+            if (diff > 0) {
+                nextSlide();
+            } else {
+                prevSlide();
+            }
+            resetAutoPlay();
+        }
+    }
+    
+    // Start auto-play
+    startAutoPlay();
 }

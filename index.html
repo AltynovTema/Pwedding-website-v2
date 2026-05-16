@@ -66,6 +66,7 @@
                     <div class="ml-10 flex items-baseline space-x-4">
                         <a href="#home" class="hover:text-gold px-3 py-2 rounded-md text-sm font-medium transition-colors">Главная</a>
                         <a href="#story" class="hover:text-gold px-3 py-2 rounded-md text-sm font-medium transition-colors">История</a>
+                        <a href="#gallery" class="hover:text-gold px-3 py-2 rounded-md text-sm font-medium transition-colors">Галерея</a>
                         <a href="#details" class="hover:text-gold px-3 py-2 rounded-md text-sm font-medium transition-colors">Детали</a>
                         <a href="#program" class="hover:text-gold px-3 py-2 rounded-md text-sm font-medium transition-colors">Программа</a>
                         <a href="#faq" class="hover:text-gold px-3 py-2 rounded-md text-sm font-medium transition-colors">Важная информация</a>
@@ -84,6 +85,7 @@
             <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
                 <a href="#home" class="text-candle hover:text-gold block px-3 py-2 rounded-md text-base font-medium">Главная</a>
                 <a href="#story" class="text-candle hover:text-gold block px-3 py-2 rounded-md text-base font-medium">История</a>
+                <a href="#gallery" class="text-candle hover:text-gold block px-3 py-2 rounded-md text-base font-medium">Галерея</a>
                 <a href="#details" class="text-candle hover:text-gold block px-3 py-2 rounded-md text-base font-medium">Детали</a>
                 <a href="#program" class="text-candle hover:text-gold block px-3 py-2 rounded-md text-base font-medium">Программа</a>
                 <a href="#faq" class="text-candle hover:text-gold block px-3 py-2 rounded-md text-base font-medium">Важная информация</a>
@@ -174,6 +176,44 @@
                 </div>
                 <div class="col-sm-5 col-sm-offset-2 col-xs-6 hidden-md hidden-lg wp9">
                     <img src="/Pwedding-website-v2/images/story-2.jpg" alt="Предложение" class="w-full h-96 object-cover rounded-lg shadow-xl">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-20 bg-candle">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-4xl md:text-5xl font-serif text-juniper mb-4">Галерея</h2>
+                <p class="text-leaf italic">Моменты нашей любви</p>
+                <div class="w-24 h-1 bg-leaf mx-auto mt-4"></div>
+            </div>
+
+            <!-- Carousel Container -->
+            <div class="fade-in">
+                <div class="relative overflow-hidden rounded-2xl shadow-2xl">
+                    <!-- Carousel Track -->
+                    <div id="gallery-carousel" class="flex transition-transform duration-1000 ease-in-out">
+                        <!-- Photos will be dynamically inserted here -->
+                    </div>
+
+                    <!-- Navigation Arrows (for manual control) -->
+                    <button id="gallery-prev" class="absolute left-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-juniper w-12 h-12 rounded-full shadow-lg flex items-center justify-center transition-all hover:scale-110 z-10">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                        </svg>
+                    </button>
+                    <button id="gallery-next" class="absolute right-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-juniper w-12 h-12 rounded-full shadow-lg flex items-center justify-center transition-all hover:scale-110 z-10">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Dots Indicator - Below carousel -->
+                <div id="gallery-dots" class="flex justify-center gap-2 mt-6">
+                    <!-- Dots will be dynamically inserted here -->
                 </div>
             </div>
         </div>
