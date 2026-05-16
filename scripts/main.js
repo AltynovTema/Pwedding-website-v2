@@ -160,28 +160,23 @@ document.getElementById('rsvpForm').addEventListener('submit', async function(e)
         loadingModal.querySelector('div').classList.add('scale-100');
     }, 10);
     
-    try {
-        // Send to Formspree
-        await sendToEmail(formData);
-        
-        // Hide loading modal after 1.5 seconds
-        setTimeout(() => {
-            loadingModal.classList.add('hidden');
-            
-            // Show success modal
-            showSuccessModal(name);
-        }, 1500);
-        
-    } catch (error) {
-        console.error('Error sending email:', error);
-        loadingModal.classList.add('hidden');
-        alert('Произошла ошибка при отправке. Пожалуйста, попробуйте еще раз.');
-    }
+    // Send to Formspree in background (fire and forget - don't wait for response)
+    sendToEmail(formData).then(() => {
+        console.log('✅ Form sent successfully');
+    }).catch((error) => {
+        console.log('⚠️ Background send error (form still submitted):', error.message);
+    });
     
-    this.reset();
-    // Hide guest names section after reset
-    document.getElementById('guestNamesSection').classList.add('hidden');
-    document.getElementById('guestNamesContainer').innerHTML = '';
+    // Always show success after 1 second (don't wait for server response)
+    setTimeout(() => {
+        loadingModal.classList.add('hidden');
+        showSuccessModal(name);
+        
+        // Reset form
+        this.reset();
+        document.getElementById('guestNamesSection').classList.add('hidden');
+        document.getElementById('guestNamesContainer').innerHTML = '';
+    }, 1000);
 });
 
 // Dynamic Guest Names Fields
