@@ -857,64 +857,65 @@ function initBackgroundMusic() {
     if (!music || !toggleButton) return;
     
     let isPlaying = false;
-    let userInteracted = false;
     
     // Set volume to 50% for background music
     music.volume = 0.5;
     
-    // Try to autoplay on page load
-    function attemptAutoplay() {
+    // Initialize icon state (show off by default)
+    iconOn.classList.add('hidden');
+    iconOff.classList.remove('hidden');
+    
+    // Try to play music
+    function playMusic() {
         music.play().then(() => {
             isPlaying = true;
-            updateIcon();
+            iconOn.classList.remove('hidden');
+            iconOff.classList.add('hidden');
         }).catch(error => {
-            console.log('Autoplay prevented:', error);
+            // Autoplay blocked - will start on user interaction
             isPlaying = false;
-            updateIcon();
+            iconOn.classList.add('hidden');
+            iconOff.classList.remove('hidden');
         });
     }
     
-    // Update button icon based on state
-    function updateIcon() {
-        if (isPlaying) {
-            iconOn.classList.remove('hidden');
-            iconOff.classList.add('hidden');
-        } else {
-            iconOn.classList.add('hidden');
-            iconOff.classList.remove('hidden');
-        }
-    }
-    
     // Toggle music on button click
-    toggleButton.addEventListener('click', () => {
-        userInteracted = true;
+    toggleButton.addEventListener('click', (e) => {
+        e.stopPropagation();
         
         if (isPlaying) {
             music.pause();
             isPlaying = false;
+            iconOn.classList.add('hidden');
+            iconOff.classList.remove('hidden');
         } else {
             music.play().then(() => {
                 isPlaying = true;
+                iconOn.classList.remove('hidden');
+                iconOff.classList.add('hidden');
             }).catch(error => {
                 console.error('Error playing music:', error);
             });
         }
-        
-        updateIcon();
     });
     
-    // Attempt autoplay after a short delay
-    setTimeout(attemptAutoplay, 1500);
+    // Try to autoplay immediately (will likely be blocked)
+    setTimeout(() => {
+        playMusic();
+    }, 500);
     
-    // Also try on first user interaction (if not already playing)
-    const interactionHandler = () => {
-        if (!userInteracted && !isPlaying) {
-            attemptAutoplay();
+    // Start music on FIRST user interaction
+    let startedOnInteraction = false;
+    const startOnInteraction = () => {
+        if (!isPlaying && !startedOnInteraction) {
+            playMusic();
+            startedOnInteraction = true;
         }
-        userInteracted = true;
     };
     
-    document.addEventListener('click', interactionHandler, { once: true });
-    document.addEventListener('touchstart', interactionHandler, { once: true });
-    document.addEventListener('scroll', interactionHandler, { once: true });
+    // Listen for ANY user interaction
+    document.addEventListener('click', startOnInteraction, { once: true });
+    document.addEventListener('touchstart', startOnInteraction, { once: true });
+    document.addEventListener('scroll', startOnInteraction, { once: true });
+    document.addEventListener('keydown', startOnInteraction, { once: true });
 }
