@@ -51,14 +51,14 @@
     </div>
 
     <!-- Back to Top Button -->
-    <button id="backToTop" class="fixed bottom-8 right-8 bg-coral text-candle w-12 h-12 rounded-full shadow-lg hover:bg-coral/80 transition-all transform hover:scale-110 opacity-0 pointer-events-none z-40 flex items-center justify-center" aria-label="Наверх">
+    <button id="backToTop" class="fixed bottom-24 left-8 bg-coral text-candle w-12 h-12 rounded-full shadow-lg hover:bg-coral/80 transition-all transform hover:scale-110 opacity-0 pointer-events-none z-40 flex items-center justify-center scroll-top-btn" aria-label="Наверх">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
         </svg>
     </button>
 
     <!-- Music Toggle Button -->
-    <button id="musicToggle" class="fixed bottom-8 left-8 bg-coral text-candle w-12 h-12 rounded-full shadow-lg hover:bg-coral/80 transition-all transform hover:scale-110 z-40 flex items-center justify-center" aria-label="Включить/выключить музыку">
+    <button id="musicToggle" class="fixed bottom-8 left-8 bg-coral text-candle w-12 h-12 rounded-full shadow-lg hover:bg-coral/80 transition-all transform hover:scale-110 z-40 flex items-center justify-center audio-btn" aria-label="Включить/выключить музыку">
         <svg id="musicIconOn" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"></path>
         </svg>
@@ -67,6 +67,14 @@
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2"></path>
         </svg>
     </button>
+
+    <!-- Sticky RSVP Button (appears after scrolling) -->
+    <a href="#rsvp" id="stickyRsvpButton" class="main-rsvp-btn fixed z-50 bg-coral text-candle font-medium shadow-lg hover:bg-coral/90 transition-all transform hover:scale-105 flex items-center justify-center gap-2 opacity-0 pointer-events-none">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+        </svg>
+        <span>Подтвердить участие</span>
+    </a>
 
     <!-- Navigation -->
     <nav class="fixed w-full z-50 bg-juniper text-candle transition-all duration-300" id="navbar">
@@ -117,9 +125,6 @@
             </div>
             <h1 class="font-serif text-4xl md:text-6xl font-bold mb-8 leading-[0.9] fade-in fade-in-delay-2">Алёна</h1>
             <p class="font-serif text-xl md:text-2xl italic mb-10 text-candle/80 fade-in fade-in-delay-2">09 августа 2026</p>
-            <a href="#rsvp" class="inline-block bg-coral text-candle px-8 py-3 rounded-full text-lg font-medium hover:bg-coral/90 transition-transform transform hover:scale-105 shadow-lg fade-in fade-in-delay-2">
-                Подтвердить участие
-            </a>
         </div>
         <div class="absolute bottom-4 left-0 right-0 flex justify-center animate-bounce">
             <svg class="w-8 h-8 text-candle" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
@@ -203,23 +208,11 @@
 
             <!-- Carousel Container -->
             <div class="fade-in">
-                <div class="relative overflow-hidden rounded-2xl shadow-2xl">
+                <div class="relative overflow-hidden rounded-2xl shadow-2xl" id="gallery-container" style="height: 600px;">
                     <!-- Carousel Track -->
-                    <div id="gallery-carousel" class="flex transition-transform duration-1000 ease-in-out">
+                    <div id="gallery-carousel" class="flex transition-transform duration-500 ease-out h-full">
                         <!-- Photos will be dynamically inserted here -->
                     </div>
-
-                    <!-- Navigation Arrows (for manual control) -->
-                    <button id="gallery-prev" class="absolute left-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-juniper w-12 h-12 rounded-full shadow-lg flex items-center justify-center transition-all hover:scale-110 z-10">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
-                        </svg>
-                    </button>
-                    <button id="gallery-next" class="absolute right-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-juniper w-12 h-12 rounded-full shadow-lg flex items-center justify-center transition-all hover:scale-110 z-10">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                        </svg>
-                    </button>
                 </div>
 
                 <!-- Dots Indicator - Below carousel -->
