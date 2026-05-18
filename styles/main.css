@@ -670,28 +670,42 @@ a:focus {
 @media (max-width: 768px) {
     .main-rsvp-btn {
         position: fixed;
-        bottom: 20px;
+        bottom: 100px;
         left: 0;
         right: 0;
         margin-left: auto;
         margin-right: auto;
-        padding: 14px 28px;
+        padding: 10px 20px;
         border-radius: 50px;
-        font-size: 15px;
-        min-width: 200px;
+        font-size: 13px;
+        min-width: 160px;
         width: fit-content;
         white-space: nowrap;
     }
     
     /* Adjust other buttons to be above RSVP button */
     .audio-btn {
-        bottom: 90px !important;
+        bottom: 100px !important;
         left: 20px !important;
+        width: 40px !important;
+        height: 40px !important;
+    }
+    
+    .audio-btn svg {
+        width: 20px !important;
+        height: 20px !important;
     }
     
     .scroll-top-btn {
-        bottom: 160px !important;
+        bottom: 150px !important;
         left: 20px !important;
         right: auto !important;
+        width: 40px !important;
+        height: 40px !important;
+    }
+    
+    .scroll-top-btn svg {
+        width: 20px !important;
+        height: 20px !important;
     }
 }
